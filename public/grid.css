@@ -4,15 +4,36 @@
 .grid-container {
   display: grid;
   grid-template-columns: 0fr 1fr 1fr 1fr;
-  grid-template-rows: 5fr 1.5fr 5.8fr 0.1fr 0.1fr;
-  grid-template-areas: "VIDEO VIDEO VIDEO VIDEO-LIST" "VIDEO VIDEO VIDEO VIDEO-LIST" "VIDEO-DETAILS VIDEO-DETAILS VIDEO-DETAILS TOOLS" ". . . ." ". . . .";
+  grid-template-rows: 5fr 1.5fr 1.5fr 4.4fr 2.6fr;
+  grid-template-areas: "VIDEO VIDEO VIDEO VIDEO-LIST" "VIDEO VIDEO VIDEO VIDEO-LIST" ". VIDEO-DETAILS VIDEO-DETAILS TOOLS" ". NOTES NOTES TOOLS" ". NOTES NOTES .";
 }
 
-.VIDEO { grid-area: VIDEO; background: #aaa}
+.TOOLS { grid-area: TOOLS; }
+
+.VIDEO-DETAILS { grid-area: VIDEO-DETAILS; }
+
+.NOTES { grid-area: NOTES; }
+
+.VIDEO { 
+  grid-area: VIDEO; 
+  background: #aaa;
+  position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+  height: 0;
+}
+
+.VIDEO iframe {
+  position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
 
 .VIDEO-LIST { grid-area: VIDEO-LIST; background: #bbb}
 
-.VIDEO-DETAILS {
+/* .VIDEO-DETAILS {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 0.5fr 1.5fr;
@@ -30,7 +51,7 @@
   grid-template-areas: ". . ." ". . .";
   grid-area: TOOLS;
   background: #eee;
-}
+} */
 
 
 /* ADD MEDIA QUERIES FOR THE RE-SIZING AND REFLOW OF ALL BOXES */
