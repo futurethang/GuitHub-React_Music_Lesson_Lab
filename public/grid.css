@@ -1,0 +1,36 @@
+
+/* CSS GRID MARKUP FROM https://grid.layoutit.com/ */
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 0fr 1fr 1fr 1fr;
+  grid-template-rows: 5fr 1.5fr 5.8fr 0.1fr 0.1fr;
+  grid-template-areas: "VIDEO VIDEO VIDEO VIDEO-LIST" "VIDEO VIDEO VIDEO VIDEO-LIST" "VIDEO-DETAILS VIDEO-DETAILS VIDEO-DETAILS TOOLS" ". . . ." ". . . .";
+}
+
+.VIDEO { grid-area: VIDEO; background: #aaa}
+
+.VIDEO-LIST { grid-area: VIDEO-LIST; background: #bbb}
+
+.VIDEO-DETAILS {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 0.5fr 1.5fr;
+  grid-template-areas: ". . ." "NOTES NOTES NOTES";
+  grid-area: VIDEO-DETAILS;
+  background: #ccc
+}
+
+.NOTES { grid-area: NOTES; background: #ddd}
+
+.TOOLS {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: ". . ." ". . .";
+  grid-area: TOOLS;
+  background: #eee;
+}
+
+
+/* ADD MEDIA QUERIES FOR THE RE-SIZING AND REFLOW OF ALL BOXES */
