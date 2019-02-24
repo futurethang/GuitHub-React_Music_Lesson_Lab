@@ -1,10 +1,15 @@
-import React, { Component } from 'react';
-
+import React, { Component } from "react";
+import { loadVideo } from '../videoFunctions';
 
 export default class Header extends Component {
   render() {
     return (
-      <h1>HEADER</h1>
-    )
+      <div>
+        <h1>HEADER</h1>
+        <button id="load-video" type="button" onClick={loadVideo}>
+          LOAD VIDEO
+        </button>
+      </div>
+    );
   }
 }
