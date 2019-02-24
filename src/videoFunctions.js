@@ -1,8 +1,10 @@
+import keys from './config/keys';
+
 // TRYING TO EXPORT THESE WITH HELP FROM: https://stackoverflow.com/questions/38402025/how-to-create-helper-file-full-of-functions-in-react-native
 
 // BUILD A QUERY STRING
 let searchString = "WOODYGUTHRIE"
-const apiKey = "AIzaSyAIy_n7C7B97RBNWvyzAb0AChKzG9Sx7d4";
+const apiKey = keys.google.Youtube;
 let queryString =
   "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&order=relevance&q=" +
   searchString +
@@ -23,13 +25,9 @@ let currentVideoId;
 // }
 
 export function loadVideo() {
-  alert("IT WORKS!");
   fetch(queryString)
     .then(function (response) {
-      console.log(queryString);
-      console.log(response.items);
       videoList = response.body.items;
-      console.log(videoList);
       // loadVideo(videoList);
     })
     .catch(err => console.log(err));
