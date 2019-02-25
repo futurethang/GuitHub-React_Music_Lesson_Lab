@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import VideoListItem from "./videoListItem";
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as stuffActions from '../actions/stuffActions';
+import PropTypes from 'prop-types';
 
 const listTextItems = [1, 2, 3, 4, 5, 6, 7, 8];
 

@@ -26,9 +26,11 @@ let currentVideoId;
 
 export function loadVideo() {
   fetch(queryString)
-    .then(function (response) {
-      console.log(response);
-      videoList = response.body.items;
+    .then((response) => {
+      return response.json();
+    }).then((data) => {
+      console.log(data.items);
+      videoList = data.items;
       // loadVideo(videoList);
     })
     .catch(err => console.log(err));
