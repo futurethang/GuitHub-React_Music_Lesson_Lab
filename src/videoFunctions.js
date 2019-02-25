@@ -27,6 +27,7 @@ let currentVideoId;
 export function loadVideo() {
   fetch(queryString)
     .then(function (response) {
+      console.log(response);
       videoList = response.body.items;
       // loadVideo(videoList);
     })
