@@ -1,4 +1,5 @@
 import * as types from './actionTypes';
+import { loadVideo } from '../videoFunctions';
 
 function url() {
   return 'www.url.com';
@@ -10,15 +11,7 @@ export function receiveStuff(json) {
 
 export function fetchStuff() {
   return dispatch => {
-    return fetch(url(), {
-      method: 'GET',
-      mode: 'cors',
-      credentials: 'include',
-      headers: {
-        'x-api-key': apiKey,
-        'Accept': 'application/json'
-      }
-    })
+    loadVideo()
     .then(response => response.json())
     .then(json => dispatch(receiveStuff(json)));
   };

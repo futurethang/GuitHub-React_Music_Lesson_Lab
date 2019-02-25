@@ -31,7 +31,7 @@ export function loadVideo() {
     }).then((data) => {
       console.log(data.items);
       videoList = data.items;
-      // loadVideo(videoList);
+      return videoList;
     })
     .catch(err => console.log(err));
   console.log(videoList);

@@ -1,5 +1,5 @@
 import initialState from './initialState';
-import {FETCH_STUFF, RECEIVE_STUFF} from '../actions/actionTypes';
+import {FETCH_STUFF, RECEIVE_STUFF} from '../actions/allActions';
 
 export default function stuff(state = initialState.stuff, action) {
   let newState;
