@@ -24,15 +24,15 @@ let currentVideoId;
 //   return Math.floor(Math.random() * length + 1);
 // }
 
-export function loadVideo() {
-  fetch(queryString)
-    .then(function (response) {
-      console.log(response);
-      videoList = response.body.items;
-      // loadVideo(videoList);
-    })
-    .catch(err => console.log(err));
-  console.log(videoList);
+const loadVideo = async () => {
+  let videos = []
+  await fetch(queryString)
+    .then((response) => {
+      return response.json();
+    }).then((data) => {
+      videos = data.items;
+    }).catch(err => console.log(err));
+  return videos;
 }
 
 ///////////////////// VARIABLE TO HANG ON TO FOR LATER
@@ -48,3 +48,5 @@ export function loadVideo() {
 // $("#newVideo").on("click", function() {
 //   loadVideo(videoList);
 // });
+
+export default loadVideo;
