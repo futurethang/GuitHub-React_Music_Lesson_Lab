@@ -14,13 +14,11 @@ class App extends Component {
   };
 
   onLoadVideo = async () => {
-    alert("clicked");
     let videos = await loadVideo();
     console.log("videos", videos);
     this.setState({
       videos: videos
     });
-
     console.log("state videos", this.state.videos);
   };
 
