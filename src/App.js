@@ -26,7 +26,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header loadVideos={this.onLoadVideo} />
-        <div class="grid-container">
+        <div className="grid-container">
           <VideoFrame />
           <VideoList />
           <VideoDetails />

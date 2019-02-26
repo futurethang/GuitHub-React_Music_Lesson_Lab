@@ -1,6 +1,9 @@
 
 /* CSS GRID MARKUP FROM https://grid.layoutit.com/ */
 /* FLEXIBLE VIDEO FRAME WITH HELP FROM: https://css-tricks.com/NetMag/FluidWidthVideo/Article-FluidWidthVideo.php */
+.textInput {
+  display: inline;
+}
 
 .grid-container {
   display: grid;
