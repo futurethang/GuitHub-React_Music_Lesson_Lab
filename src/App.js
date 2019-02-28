@@ -5,6 +5,7 @@ import VideoList from "./components/videoList";
 import VideoDetails from "./components/videoDetails";
 import Notes from "./components/notes";
 import Tools from "./components/tools";
+import FormMock from "./components/formMock"
 import loadVideo from "./videoFunctions";
 
 class App extends Component {
@@ -13,7 +14,8 @@ class App extends Component {
     user: ""
   };
 
-  onLoadVideo = async () => {
+  onLoadVideo = async (message) => {
+    console.log(message)
     let videos = await loadVideo();
     console.log("videos", videos);
     this.setState({
@@ -33,6 +35,7 @@ class App extends Component {
           <VideoDetails />
           <Notes />
           <Tools />
+          {/* <FormMock /> */}
         </div>
       </div>
     );
