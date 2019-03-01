@@ -1,4 +1,3 @@
-
 /* CSS GRID MARKUP FROM https://grid.layoutit.com/ */
 /* FLEXIBLE VIDEO FRAME WITH HELP FROM: https://css-tricks.com/NetMag/FluidWidthVideo/Article-FluidWidthVideo.php */
 .textInput {
@@ -12,30 +11,257 @@
   grid-template-areas: "VIDEO VIDEO VIDEO VIDEO-LIST" "VIDEO VIDEO VIDEO VIDEO-LIST" ". VIDEO-DETAILS VIDEO-DETAILS TOOLS" ". NOTES NOTES TOOLS" ". NOTES NOTES .";
 }
 
-.TOOLS { grid-area: TOOLS; }
+.TOOLS {
+  grid-area: TOOLS;
+}
 
-.VIDEO-DETAILS { grid-area: VIDEO-DETAILS; }
+.VIDEO-DETAILS {
+  grid-area: VIDEO-DETAILS;
+}
 
-.NOTES { grid-area: NOTES; }
+.NOTES {
+  grid-area: NOTES;
+}
 
-.VIDEO { 
-  grid-area: VIDEO; 
+.VIDEO {
+  grid-area: VIDEO;
   background: #aaa;
   position: relative;
-	padding-bottom: 56.25%; /* 16:9 */
-	padding-top: 25px;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
   height: 0;
 }
 
 .VIDEO iframe {
   position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
-.VIDEO-LIST { grid-area: VIDEO-LIST; background: #bbb}
+.VIDEO-LIST {
+  grid-area: VIDEO-LIST;
+  background: #bbb;
+  overflow: scroll;
+  height: 100%;
+}
+
+.LIST-ITEM:hover {
+  opacity: .85;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  line-height: 1.5;
+  font-family: 'Source Sans Pro';
+  -webkit-font-smoothing: antialiased;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+h1 {
+  line-height: 1.3;
+}
+p,
+h1,
+h3 {
+  margin: 0 0 25px 0;
+}
+.wrapper {
+  min-height: 100vh;
+  padding: 10vh 10vw;
+  background: #fffafa;
+}
+/* button base */
+.btn {
+  display: inline-flex;
+  /* align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8.333333333333334px;
+  padding: 10px 25px; */
+  border-radius: 2px;
+  line-height: normal;
+  font-size: 16px;
+  color: #fff;
+  background: #fff;
+/* svg icon */
+/* reveal svg icon */
+/* large button */
+/* styles */
+}
+.btn-icon {
+  will-change: width, transform;
+  width: 0;
+  height: 24px;
+  padding: 4px;
+  border-radius: 50%;
+  fill: #fff;
+  background: rgba(0,0,0,0.15);
+  margin-left: 0;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+/* if you want the icon visible always */
+}
+.btn-icon--vis {
+  width: 24px;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  margin-left: 8.333333333333334px;
+}
+.btn:hover .btn-icon {
+  width: 24px;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  margin-left: 8.333333333333334px;
+}
+.btn--large {
+  font-size: 20px;
+}
+.btn--large .btn-icon {
+  height: 28px;
+}
+.btn--large:hover .btn-icon {
+  width: 28px;
+}
+.btn--style1 {
+  position: relative;
+  z-index: 1;
+}
+.btn--style1:before {
+  will-change: opacity;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  border-radius: 2px;
+  background: #000;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.btn--style1:hover:before {
+  opacity: 0.2;
+}
+.btn--style2 .btn-icon {
+  -webkit-transform: scale(0) rotate(-360deg);
+          transform: scale(0) rotate(-360deg);
+}
+.btn--style3 {
+  position: relative;
+  z-index: 1;
+}
+.btn--style3:before {
+  will-change: opacity;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  border-radius: 2px;
+  background: #000;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transform-origin: left center;
+          transform-origin: left center;
+  opacity: 0.2;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.btn--style3:hover:before {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+}
+.btn--style4 {
+  position: relative;
+  z-index: 1;
+}
+.btn--style4:before {
+  will-change: opacity;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  border-radius: 2px;
+  background: #000;
+  -webkit-transform: scaleY(0);
+          transform: scaleY(0);
+  -webkit-transform-origin: center bottom;
+          transform-origin: center bottom;
+  opacity: 0.2;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.btn--style4:hover:before {
+  -webkit-transform: scaleY(1);
+          transform: scaleY(1);
+}
+/* block buttons */
+.flex {
+  display: flex;
+}
+.flex > .btn {
+  flex: 1;
+  margin-right: 3px;
+}
+.flex > .btn:last-child {
+  margin-right: 0;
+}
+.max-w {
+  max-width: 600px;
+}
+/* color classes */
+.red {
+  background: #f44336;
+}
+.pink {
+  background: #e91e63;
+}
+.purple {
+  background: #9c27b0;
+}
+.blue {
+  background: #2196f3;
+}
+.teal {
+  background: #009688;
+}
+.green {
+  background: #4caf50;
+}
+.yellow {
+  background: #ffeb3b;
+}
+.logo {
+  position: fixed;
+  bottom: 3vh;
+  right: 3vw;
+  z-index: 2;
+}
+.logo img {
+  width: 65px;
+  -webkit-transform: rotate(0);
+          transform: rotate(0);
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.logo img:hover {
+  -webkit-transform: rotate(180deg) scale(1.1);
+          transform: rotate(180deg) scale(1.1);
+}
+    
+  
+
+	
 
 /* .VIDEO-DETAILS {
   display: grid;
@@ -56,6 +282,5 @@
   grid-area: TOOLS;
   background: #eee;
 } */
-
 
 /* ADD MEDIA QUERIES FOR THE RE-SIZING AND REFLOW OF ALL BOXES */

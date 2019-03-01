@@ -54,8 +54,8 @@ class Header extends React.Component {
         <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
             <form
-              style={{ position: "absolute", top: "10px" }}
               className="column columns is-10"
+              style={{ position: "relative", top: "10px" }}
             >
               <input
                 className="input is-rounded textInput column"

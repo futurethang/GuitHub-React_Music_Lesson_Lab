@@ -5,7 +5,6 @@ import VideoList from "./components/videoList";
 import VideoDetails from "./components/videoDetails";
 import Notes from "./components/notes";
 import Tools from "./components/tools";
-import FormMock from "./components/formMock"
 import loadVideo from "./videoFunctions";
 
 class App extends Component {
@@ -44,7 +43,7 @@ class App extends Component {
         <Header loadVideos={this.onLoadVideo} />
         <div className="grid-container">
           <VideoFrame video={this.state.featuredVideo}/>
-          <VideoList />
+          <VideoList videos={this.state.videos} />
           <VideoDetails />
           <VideoDetails />
           <Notes />
