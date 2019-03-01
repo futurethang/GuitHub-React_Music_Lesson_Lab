@@ -10,7 +10,7 @@ import loadVideo from "./videoFunctions";
 
 class App extends Component {
   state = {
-    featuredVideo: {},
+    featuredVideo: null,
     videos: [],
     user: "",
   };

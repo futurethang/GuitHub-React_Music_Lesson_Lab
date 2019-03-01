@@ -6,25 +6,32 @@ export default class VideoFrame extends Component {
     super(props);
   }
 
-  videoURL = "https://www.youtube.com/embed/" + this.props.video + "?autoplay=1&cc_load_policy=1";
-
   render() {
+    if (this.props.video == null) {
+      return (
+        <div className="VIDEO">
+          <h1>NO VIDEO</h1>
+        </div>
+      );
+    }
+
+    let videoURL =
+      "https://www.youtube.com/embed/" +
+      this.props.video.id.videoId +
+      "?autoplay=1&cc_load_policy=1";
+
     return (
       <div className="VIDEO">
         VIDEO
-        {/* {this.props.video === undefined ?
-        <h1>NO VIDEO</h1>
-        : */}
         <iframe
           className="VIDEO-IFRAME"
           width="560"
           height="315"
-          src={this.videoURL}
+          src={videoURL}
           frameBorder="0"
           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         />
-        {/* } */}
       </div>
     );
   }
@@ -36,6 +43,6 @@ export default class VideoFrame extends Component {
 //     var title = currentVideoMeta.snippet.title;
 //     var channel = currentVideoMeta.snippet.channelTitle;
 //     var channelLink = "https://www.youtube.com/channel/" + currentVideoMeta.snippet.channelId;
-    
+
 //     $("#videoChannel").attr("href", channelLink);
 //     $("#videoFrame").empty().html('<iframe width="420" height="315" src="' + embedUrl + '" frameborder="0" allowfullscreen id="feature_video"></iframe>')
