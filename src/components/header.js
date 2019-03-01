@@ -6,8 +6,8 @@ class Header extends React.Component {
     this.state = {
       instrument: '',
       style: '',
-      experience: '',
-      lessonType: ''
+      experience: 'Beginner',
+      lessonType: 'Exercises'
     };
    
   }
@@ -18,9 +18,10 @@ class Header extends React.Component {
 
   logInputs = e => {
     e.preventDefault();
-    console.log(this.state);
+    const inputs = this.state;
+    console.log(inputs);
     // convert this function into a call to loadVideo
-    this.props.loadVideos()
+    this.props.loadVideos(inputs)
     // change loadVideos procedure to put together a query string from this.state
     // this.props.loadVideos(this.state)
   };

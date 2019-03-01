@@ -10,26 +10,40 @@ import loadVideo from "./videoFunctions";
 
 class App extends Component {
   state = {
+    featuredVideo: {},
     videos: [],
-    user: ""
+    user: "",
   };
 
-  onLoadVideo = async (message) => {
-    console.log(message)
-    let videos = await loadVideo();
+  onLoadVideo = async (inputs) => {
+    console.log("inputs in App.js", inputs)
+    let videos = await loadVideo(inputs);
     console.log("videos", videos);
     this.setState({
       videos: videos
     });
     console.log("state videos", this.state.videos);
+    this.loadVideo()
   };
+
+  randomSelect = (length) => {
+    return Math.floor((Math.random() * length) + 1)
+  }
+
+  newVideo = () => { } // A FUNCTION TO SELECT A NEW VIDEO FROM THE CURRENT QUERY, AS OPPOSED TO NEW SEARCH
+
+  loadVideo = () => {
+    const selection = this.state.videos[this.randomSelect(this.state.videos.length)];
+    this.setState({ featuredVideo: selection });
+    console.log("FEATURED VIDEO", this.state.featuredVideo);
+  }
 
   render() {
     return (
       <div className="App">
         <Header loadVideos={this.onLoadVideo} />
         <div className="grid-container">
-          <VideoFrame />
+          <VideoFrame video={this.state.featuredVideo}/>
           <VideoList />
           <VideoDetails />
           <VideoDetails />
