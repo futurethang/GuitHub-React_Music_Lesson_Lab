@@ -1,41 +1,45 @@
 /* CSS GRID MARKUP FROM https://grid.layoutit.com/ */
 /* FLEXIBLE VIDEO FRAME WITH HELP FROM: https://css-tricks.com/NetMag/FluidWidthVideo/Article-FluidWidthVideo.php */
-.textInput {
-  display: inline;
-}
-
+/* ADD MEDIA QUERIES FOR THE RE-SIZING AND REFLOW OF ALL BOXES */
 .grid-container {
-  display: grid;
-  grid-template-columns: 0fr 1fr 1fr 1fr;
-  grid-template-rows: 5fr 1.5fr 1.5fr 4.4fr 2.6fr;
-  grid-template-areas: "VIDEO VIDEO VIDEO VIDEO-LIST" "VIDEO VIDEO VIDEO VIDEO-LIST" ". VIDEO-DETAILS VIDEO-DETAILS TOOLS" ". NOTES NOTES TOOLS" ". NOTES NOTES .";
+  
 }
 
-.TOOLS {
-  grid-area: TOOLS;
+.VideoArea {
+  position: absolute;
+  overflow: scroll;
 }
 
-.VIDEO-DETAILS {
-  grid-area: VIDEO-DETAILS;
-}
-
-.NOTES {
-  grid-area: NOTES;
-}
-
-.VIDEO {
-  grid-area: VIDEO;
-  background: #aaa;
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
-  padding-top: 25px;
-  /* height: 0; */
-  min-height:4em;
+.VideoList { 
+  min-height: 4em;
   max-height: 20%;
-  /* overflow-y: auto; */
+  overflow: scroll;
+ }
+
+.VideoFrame { 
+  position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
 }
 
-.VIDEO iframe {
+.InfoAndTools {
+
+}
+
+.Tools {
+  
+}
+
+.Notes {
+  
+}
+
+.VideoDetails {
+  
+}
+
+.VideoFrame iframe {
   position: absolute;
   top: 0;
   left: 0;
@@ -43,17 +47,14 @@
   height: 100%;
 }
 
-.VIDEO-LIST {
-  grid-area: VIDEO-LIST;
-  background: #bbb;
-  min-height:4em;
-  max-height: 20%;
-  overflow: hidden;
+.textInput {
+  display: inline;
 }
 
 .LIST-ITEM:hover {
   opacity: .85;
 }
+
 * {
   box-sizing: border-box;
 }
@@ -264,27 +265,49 @@ h3 {
 }
     
   
-
-	
-
-/* .VIDEO-DETAILS {
+/* OLD GRID SETTINGS!!!! 4:09PM 3/1/19 */
+/* .grid-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 0.5fr 1.5fr;
-  grid-template-areas: ". . ." "NOTES NOTES NOTES";
-  grid-area: VIDEO-DETAILS;
-  background: #ccc
+  grid-template-columns: 0fr 1fr 1fr 1fr;
+  grid-template-rows: 5fr 1.5fr 1.5fr 4.4fr 2.6fr;
+  grid-template-areas: "VIDEO VIDEO VIDEO VIDEO-LIST" "VIDEO VIDEO VIDEO VIDEO-LIST" ". VIDEO-DETAILS VIDEO-DETAILS TOOLS" ". NOTES NOTES TOOLS" ". NOTES NOTES .";
+} */
+/* 
+.TOOLS {
+  grid-area: TOOLS;
 }
 
-.NOTES { grid-area: NOTES; background: #ddd}
+.VIDEO-DETAILS {
+  grid-area: VIDEO-DETAILS;
+}
 
-.TOOLS {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  grid-template-areas: ". . ." ". . .";
-  grid-area: TOOLS;
-  background: #eee;
+.NOTES {
+  grid-area: NOTES;
 } */
 
-/* ADD MEDIA QUERIES FOR THE RE-SIZING AND REFLOW OF ALL BOXES */
+.VIDEO {
+  grid-area: VIDEO;
+  background: #aaa;
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  min-height:4em;
+  max-height: 20%;
+}
+
+/* .VIDEO iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+} */
+
+/* .VIDEO-LIST {
+  grid-area: VIDEO-LIST;
+  background: #bbb;
+  min-height:4em;
+  max-height: 20%;
+  overflow: hidden;
+} */
+/* OLD GRID SETTINGS!!!! 4:09PM 3/1/19 */

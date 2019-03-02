@@ -12,7 +12,7 @@ const style = {
 function VideoList(props) {
   
     return (
-      <div className="VIDEO-LIST" style={style.wrapper}>
+      <div className="VideoList column is-two-fifths" style={style.wrapper}>
         {props.videos.map(video => {
           return(<VideoListItem video={video} />)
         })}
