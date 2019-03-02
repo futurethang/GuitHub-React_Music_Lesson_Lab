@@ -29,7 +29,10 @@
   position: relative;
   padding-bottom: 56.25%; /* 16:9 */
   padding-top: 25px;
-  height: 0;
+  /* height: 0; */
+  min-height:4em;
+  max-height: 20%;
+  /* overflow-y: auto; */
 }
 
 .VIDEO iframe {
@@ -43,8 +46,9 @@
 .VIDEO-LIST {
   grid-area: VIDEO-LIST;
   background: #bbb;
-  overflow: scroll;
-  height: 100%;
+  min-height:4em;
+  max-height: 20%;
+  overflow: hidden;
 }
 
 .LIST-ITEM:hover {

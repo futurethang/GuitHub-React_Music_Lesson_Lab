@@ -5,7 +5,7 @@ const style = {
     display: "flex",
     flexDirection: "row",
     backgroundColor: "#fff",
-    padding: "0px 4px 4px 4px"
+    padding: "0px 4px 4px 4px",
   },
   image: {
     float: "left"
