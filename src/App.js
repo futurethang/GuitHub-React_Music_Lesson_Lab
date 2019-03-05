@@ -11,43 +11,55 @@ class App extends Component {
   state = {
     featuredVideo: null,
     videos: [],
-    user: "",
+    user: ""
   };
 
-  onLoadVideo = async (inputs) => {
-    console.log("inputs in App.js", inputs)
+  onLoadVideo = async inputs => {
+    console.log("inputs in App.js", inputs);
     let videos = await loadVideo(inputs);
     console.log("videos", videos);
     this.setState({
       videos: videos
     });
     console.log("state videos", this.state.videos);
-    this.loadVideo()
+    this.loadVideo();
   };
 
-  randomSelect = (length) => {
-    return Math.floor((Math.random() * length) + 1)
-  }
+  randomSelect = length => {
+    return Math.floor(Math.random() * length + 1);
+  };
 
-  newVideo = () => { } // A FUNCTION TO SELECT A NEW VIDEO FROM THE CURRENT QUERY, AS OPPOSED TO NEW SEARCH
+  newVideo = () => {}; // A FUNCTION TO SELECT A NEW VIDEO FROM THE CURRENT QUERY, AS OPPOSED TO NEW SEARCH
 
   loadVideo = () => {
-    const selection = this.state.videos[this.randomSelect(this.state.videos.length)];
+    const selection = this.state.videos[
+      this.randomSelect(this.state.videos.length)
+    ];
     this.setState({ featuredVideo: selection });
     console.log("FEATURED VIDEO", this.state.featuredVideo);
-  }
+  };
+
+  loadFromList = videoID => {
+    const newVideo = this.state.videos.find((video) => {
+      return video.id.videoId = videoID
+    })
+    this.setState({ featuredVideo: newVideo });
+    console.log("LOAD: ", newVideo, videoID.toString());
+  };
 
   render() {
     return (
       <div className="App">
         <Header loadVideos={this.onLoadVideo} />
         <div className="grid-container">
-          <VideoFrame video={this.state.featuredVideo}/>
-          <VideoList videos={this.state.videos} />
-          <VideoDetails />
-          <VideoDetails />
+          <VideoFrame video={this.state.featuredVideo} />
+          <VideoList videos={this.state.videos} loadVideo={this.loadFromList} />
+          <div className="extras">
+            <VideoDetails video={this.state.featuredVideo} />
+            <Tools />
+          </div>
           <Notes />
-          <Tools />
+
           {/* <FormMock /> */}
         </div>
       </div>

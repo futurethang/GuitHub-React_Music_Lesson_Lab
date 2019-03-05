@@ -9,7 +9,7 @@ export default class VideoFrame extends Component {
   render() {
     if (this.props.video == null) {
       return (
-        <div className="VIDEO">
+        <div className="VIDEO component">
           <h1>NO VIDEO</h1>
         </div>
       );
@@ -21,8 +21,7 @@ export default class VideoFrame extends Component {
       "?autoplay=1&cc_load_policy=1";
 
     return (
-      <div className="VIDEO">
-        VIDEO
+      <div className="VIDEO component">
         <iframe
           className="VIDEO-IFRAME"
           width="560"
