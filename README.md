@@ -12,3 +12,17 @@ This project will utilize a MERN stack to provide a single page intuitive interf
 
 * progress reports, show today's topic searches and have player rate their progress to later show improvement
 ** maybe something like, here are all the videos you studied today. Which were too easy? Which were too hard? Mark the proportions and what level they were choosing to search with to get metrics that do not ask a player to rate themself
+
+
+##Front End Tasks##
+* text area to make notes that correlate to the video - load and save once DB is up
+* add videos to playlistqueue state
+* toggle between searchlist and Queue
+* add button lnks to tools
+* save video 
+* create lesson plan
+
+##API tasks:##
+* Authorization
+* save videos to profile with corresponding notes
+* create lesson plan and add videos w/ notes to it

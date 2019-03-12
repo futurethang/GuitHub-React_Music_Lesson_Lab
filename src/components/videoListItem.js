@@ -63,7 +63,7 @@ function VideoListItem(props) {
             style={style.inlineButtons}
             onClick={(e) => {
               e.preventDefault();
-              props.loadVideo(props.video.id.videoId);
+              props.queueVideo(props.video.id.videoId);
             }}
           >
             + lesson plan

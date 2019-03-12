@@ -10,7 +10,9 @@ import loadVideo from "./videoFunctions";
 class App extends Component {
   state = {
     featuredVideo: null,
+    currentNotes: "",
     videos: [],
+    playlistVideos: [],
     user: ""
   };
 
@@ -29,8 +31,6 @@ class App extends Component {
     return Math.floor(Math.random() * length + 1);
   };
 
-  newVideo = () => {}; // A FUNCTION TO SELECT A NEW VIDEO FROM THE CURRENT QUERY, AS OPPOSED TO NEW SEARCH
-
   loadVideo = () => {
     const selection = this.state.videos[
       this.randomSelect(this.state.videos.length)
@@ -39,12 +39,26 @@ class App extends Component {
     console.log("FEATURED VIDEO", this.state.featuredVideo);
   };
 
-  loadFromList = videoID => {
-    const newVideo = this.state.videos.find((video) => {
-      return video.id.videoId = videoID
-    })
+  loadFromList = receivedVideoID => {
+    const newVideo = this.state.videos.find(video => {
+      if ((video.id.videoId === receivedVideoID)) {
+        return video;
+      }
+    });
     this.setState({ featuredVideo: newVideo });
-    console.log("LOAD: ", newVideo, videoID.toString());
+    console.log("CLICKED: ", receivedVideoID.toString(), "SAVED: ", this.state.featuredVideo);
+  };
+
+  queueFromList = receivedVideoID => {
+    const newVideo = this.state.videos.find(video => {
+      if ((video.id.videoId === receivedVideoID)) {
+        return video;
+      }
+    });
+    let playlist = this.state.playlistVideos;
+    playlist.push(newVideo);
+    this.setState({ playlistVideos: playlist });
+    console.log("CLICKED: ", receivedVideoID.toString(), "SAVED: ", this.state.playlistVideos);
   };
 
   render() {
@@ -53,7 +67,7 @@ class App extends Component {
         <Header loadVideos={this.onLoadVideo} />
         <div className="grid-container">
           <VideoFrame video={this.state.featuredVideo} />
-          <VideoList videos={this.state.videos} loadVideo={this.loadFromList} />
+          <VideoList videos={this.state.videos} loadVideo={this.loadFromList} queueVideo={this.queueFromList}/>
           <div className="extras">
             <VideoDetails video={this.state.featuredVideo} />
             <Tools />
