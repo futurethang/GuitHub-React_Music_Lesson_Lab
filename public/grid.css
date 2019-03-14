@@ -1,17 +1,26 @@
 /* CSS GRID MARKUP FROM https://grid.layoutit.com/ */
 /* FLEXIBLE VIDEO FRAME WITH HELP FROM: https://css-tricks.com/NetMag/FluidWidthVideo/Article-FluidWidthVideo.php */
+body {
+  background-color: #222;
+}
+
 .textInput {
   display: inline;
 }
 
-.grid-container {
-  
+.container {
+  max-width: 95%; 
+  width: 95%;
 }
 
 .component {
   margin: 4px;
   padding: 0px;
   border-radius: 4px;
+}
+
+.spaced {
+  margin: 0 5px 0 5px;
 }
 
 .VIDEO-DETAILS {
@@ -31,6 +40,8 @@
 .NOTES {
   background: #eee;
   clear: left;
+  width: 65%;
+  min-height: 100px;
 }
 
 .VIDEO {

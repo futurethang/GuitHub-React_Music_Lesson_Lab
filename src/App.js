@@ -10,9 +10,11 @@ import loadVideo from "./videoFunctions";
 class App extends Component {
   state = {
     featuredVideo: null,
-    currentNotes: "",
     videos: [],
+    currentNotes: "",
+    currentSearchSettings: [],
     playlistVideos: [],
+    listView: true,
     user: ""
   };
 
@@ -21,9 +23,10 @@ class App extends Component {
     let videos = await loadVideo(inputs);
     console.log("videos", videos);
     this.setState({
-      videos: videos
+      videos: videos,
+      currentSearchSettings: inputs
     });
-    console.log("state videos", this.state.videos);
+    console.log("state videos", this.state.currentSearchSettings);
     this.loadVideo();
   };
 
@@ -41,38 +44,78 @@ class App extends Component {
 
   loadFromList = receivedVideoID => {
     const newVideo = this.state.videos.find(video => {
-      if ((video.id.videoId === receivedVideoID)) {
+      if (video.id.videoId === receivedVideoID) {
         return video;
       }
     });
     this.setState({ featuredVideo: newVideo });
-    console.log("CLICKED: ", receivedVideoID.toString(), "SAVED: ", this.state.featuredVideo);
+    console.log(
+      "CLICKED: ",
+      receivedVideoID.toString(),
+      "SAVED: ",
+      this.state.featuredVideo
+    );
   };
 
   queueFromList = receivedVideoID => {
     const newVideo = this.state.videos.find(video => {
-      if ((video.id.videoId === receivedVideoID)) {
+      if (video.id.videoId === receivedVideoID) {
         return video;
       }
     });
     let playlist = this.state.playlistVideos;
     playlist.push(newVideo);
     this.setState({ playlistVideos: playlist });
-    console.log("CLICKED: ", receivedVideoID.toString(), "SAVED: ", this.state.playlistVideos);
+    console.log(
+      "CLICKED: ",
+      receivedVideoID.toString(),
+      "SAVED: ",
+      this.state.playlistVideos
+    );
+  };
+
+  togglePlaylist = e => {
+    e.preventDefault();
+    const newState = !this.state.listView;
+    this.setState({
+      listView: newState
+    });
   };
 
   render() {
     return (
-      <div className="App">
-        <Header loadVideos={this.onLoadVideo} />
+      <div className="App container">
+        <Header
+          loadVideos={this.onLoadVideo}
+        />
         <div className="grid-container">
           <VideoFrame video={this.state.featuredVideo} />
-          <VideoList videos={this.state.videos} loadVideo={this.loadFromList} queueVideo={this.queueFromList}/>
-          <div className="extras">
-            <VideoDetails video={this.state.featuredVideo} />
-            <Tools />
-          </div>
-          <Notes />
+
+          {/* CONVERT THE VIDEOLIST COMPONENT INTO A STATEFUL CONTEXTUAL FRAME
+          1. SIGN IN / SIGN UP
+          2. CONTROLS UP TOP, CONTEXTUAL BELOW (VID LIST, LESSON LIST, NOTES, EMBEDDED TOOLS)
+          3. CONTROLS CONTAIN: SEARCH, LESSONS TOGGLE, LIST STYLE TOGGLE, NOTES TOGGLE, TOOLS TOGGLE, SAVE LESSON, LOGOUT */}
+
+          {this.state.listView ? (
+            <VideoList
+              videos={this.state.videos}
+              loadVideo={this.loadFromList}
+              queueVideo={this.queueFromList}
+            />
+          ) : (
+            <VideoList
+              videos={this.state.playlistVideos}
+              loadVideo={this.loadFromList}
+            />
+          )}
+
+          {this.state.featuredVideo ? (
+            <div className="extras">
+              <VideoDetails video={this.state.featuredVideo} />
+              <Tools togglePlaylist={this.togglePlaylist} />
+              <Notes />
+            </div>
+          ) : null}
 
           {/* <FormMock /> */}
         </div>
