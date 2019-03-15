@@ -16,7 +16,12 @@ class App extends Component {
     currentSearchSettings: [],
     playlistVideos: [],
     listView: true,
-    user: ""
+    user: "",
+    controlFrameState: "INITIAL" // OTHER: LESSONS, SEARCHRESULTS, NOTES,
+    // "INITIAL" HAS LOGIN AND SEARCH
+    // "LESSONS" HAS CONTROLS AND LIST OF LESSONS
+    // "SEARCH" RESULTS HAS CONTROLS AND VIDEOS LIST
+    // "NOTES" HAS CONTROLS AND NOTES
   };
 
   onLoadVideo = async inputs => {
@@ -95,20 +100,14 @@ class App extends Component {
           2. CONTROLS UP TOP, CONTEXTUAL BELOW (VID LIST, LESSON LIST, NOTES, EMBEDDED TOOLS)
           3. CONTROLS CONTAIN: SEARCH, LESSONS TOGGLE, LIST STYLE TOGGLE, NOTES TOGGLE, TOOLS TOGGLE, SAVE LESSON, LOGOUT */}
 
-          {this.state.listView ? (
-            <ControlFrame
-              videos={this.state.videos}
-              loadVideo={this.loadFromList}
-              queueVideo={this.queueFromList}
-              togglePlaylist={this.togglePlaylist}
-            />
-          ) : (
-            <ControlFrame
-              videos={this.state.playlistVideos}
-              loadVideo={this.loadFromList}
-              togglePlaylist={this.togglePlaylist}
-            />
-          )}
+          <ControlFrame
+            listView={this.state.listView} // BOOLEAN TO ONLY SHOW IF A VIDEO IS LOADED -- !SOON OBSOLETE
+            videos={this.state.videos} // LIST OF SEARCH RESUL VIDEOS
+            loadVideo={this.loadFromList} // FUNCTION TO LOAD THE CLICKED VIDEO
+            queueVideo={this.queueFromList} // FUNCTION TO ADD VIDEO TO SAVED LIST
+            togglePlaylist={this.togglePlaylist} // TOGGLE SEARCHED VS SAVED VIDEOS
+            controlFrameState={this.state.controlFrameState} // STATE INDICATOR FOR CONTROL FRAM CONTENT - REPLACES this.listView
+          />
 
           {this.state.featuredVideo ? (
             <div className="extras">
