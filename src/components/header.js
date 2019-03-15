@@ -29,13 +29,8 @@ class Header extends React.Component {
     return (
       <nav className="container" role="navigation" aria-label="main navigation" style={{ margin: "0 0 .4rem 0", maxWidth: "100%", width:"100%"}}>
         <div class="navbar-brand">
-          <a class="navbar-item" href="https://bulma.io">
-            <img
-              src="https://bulma.io/images/bulma-logo.png"
-              alt="Bulma: Free, open source, & modern CSS framework based on Flexbox"
-              width="112"
-              height="28"
-            />
+          <a class="navbar-item is-title is-size-3 has-text-white" href="#">
+           <h1>GuitHub - a personal music lesson assistant</h1> 
           </a>
 
           <div className="navbar-end">

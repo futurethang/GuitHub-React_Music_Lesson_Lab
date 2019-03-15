@@ -63,10 +63,10 @@ body {
   height: 100%;
 }
 
-.VIDEO-LIST {
+.CONTROL-FRAME {
   float: right;
   width: 33%;
-  height: 500px;
+  height: 700px;
   background: #bbb;
   min-height:4em;
   max-height: 20%;

@@ -12,7 +12,7 @@ const style = {
 function VideoList(props) {
   
     return (
-      <div className="VIDEO-LIST component" style={style.wrapper}>
+      <div className="component" style={style.wrapper}>
         {props.videos.map(video => {
           return (<VideoListItem
             video={video}

@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import Header from "./components/header";
 import VideoFrame from "./components/videoFrame";
-import VideoList from "./components/videoList";
+import ControlFrame from "./components/controlFrame";
+import VideoList from "./components/sidebar_components/videoList";
 import VideoDetails from "./components/videoDetails";
-import Notes from "./components/notes";
-import Tools from "./components/tools";
+import Notes from "./components/sidebar_components/notes";
+import Tools from "./components/sidebar_components/tools";
 import loadVideo from "./videoFunctions";
 
 class App extends Component {
@@ -85,9 +86,7 @@ class App extends Component {
   render() {
     return (
       <div className="App container">
-        <Header
-          loadVideos={this.onLoadVideo}
-        />
+        <Header loadVideos={this.onLoadVideo} />
         <div className="grid-container">
           <VideoFrame video={this.state.featuredVideo} />
 
@@ -97,22 +96,23 @@ class App extends Component {
           3. CONTROLS CONTAIN: SEARCH, LESSONS TOGGLE, LIST STYLE TOGGLE, NOTES TOGGLE, TOOLS TOGGLE, SAVE LESSON, LOGOUT */}
 
           {this.state.listView ? (
-            <VideoList
+            <ControlFrame
               videos={this.state.videos}
               loadVideo={this.loadFromList}
               queueVideo={this.queueFromList}
+              togglePlaylist={this.togglePlaylist}
             />
           ) : (
-            <VideoList
+            <ControlFrame
               videos={this.state.playlistVideos}
               loadVideo={this.loadFromList}
+              togglePlaylist={this.togglePlaylist}
             />
           )}
 
           {this.state.featuredVideo ? (
             <div className="extras">
               <VideoDetails video={this.state.featuredVideo} />
-              <Tools togglePlaylist={this.togglePlaylist} />
               <Notes />
             </div>
           ) : null}
