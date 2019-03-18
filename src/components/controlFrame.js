@@ -24,7 +24,7 @@ class ControlFrame extends Component {
       videos: [],
       playlistVideos: [],
       currentNotes: "",
-      listView: true,
+      listView: true
     };
   }
 
@@ -45,21 +45,24 @@ class ControlFrame extends Component {
     return Math.floor(Math.random() * length + 1);
   };
 
-  loadVideo = () => { // !!!  USED TO SET THE FEATURED VIDEO,  BUT NEEDS TO BE REWORKED TO PASS IT UP TO APP.JS
+  loadVideo = () => {
+    // USED TO SET THE FEATURED VIDEO
     const selection = this.state.videos[
       this.randomSelect(this.state.videos.length)
     ];
-    this.setState({ featuredVideo: selection });
+    this.props.loadFeaturedVideo(selection);
     console.log("FEATURED VIDEO", this.state.featuredVideo);
   };
 
   loadFromList = receivedVideoID => {
-    const newVideo = this.state.videos.find(video => {
+    const selection = this.state.videos.find(video => {
       if (video.id.videoId === receivedVideoID) {
         return video;
       }
     });
-    this.setState({ featuredVideo: newVideo });
+    
+    this.props.loadFeaturedVideo(selection);
+
     console.log(
       "CLICKED: ",
       receivedVideoID.toString(),
@@ -94,7 +97,7 @@ class ControlFrame extends Component {
     });
   };
 
-    // REFERENCE TO PASSED PROPS FORMERLY IN THE APP.JS, NEED TO BE DISTRUCUTED AGAIN AMONG CHILD COMPONENTS
+  // REFERENCE TO PASSED PROPS FORMERLY IN THE APP.JS, NEED TO BE DISTRUCUTED AGAIN AMONG CHILD COMPONENTS
   //           videos={this.state.videos} // LIST OF SEARCH RESUL VIDEOS
   //           loadVideo={this.loadFromList} // FUNCTION TO LOAD THE CLICKED VIDEO
   //           queueVideo={this.queueFromList} // FUNCTION TO ADD VIDEO TO SAVED LIST
@@ -115,10 +118,13 @@ class ControlFrame extends Component {
                 />
               );
             case "SEARCH":
-              return <VideoList
+              return (
+                <VideoList
                   videos={this.state.videos}
-                  queuVideo={this.queueFromList}
-              />;
+                  queueVideo={this.queueFromList}
+                  loadFromList={this.loadFromList}
+                />
+              );
             default:
               return <h1>{this.props.controlFrameState}</h1>;
           }
@@ -128,7 +134,7 @@ class ControlFrame extends Component {
   };
 
   setSidebarState = sidebarState => {
-    console.log("CHANGING SIDEBAR STATE TO:", sidebarState)
+    console.log("CHANGING SIDEBAR STATE TO:", sidebarState);
     this.setState({
       controlFrameState: sidebarState
     });

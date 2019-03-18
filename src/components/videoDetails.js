@@ -24,8 +24,8 @@ class VideoDetails extends Component {
         </a>
         <p>{this.props.video.snippet.description}</p>
         <div className="buttons are-small">
-          <a class="button is-primary is-inverted">Share</a>
-          <a class="button is-warning is-inverted">
+          <a className="button is-primary is-inverted">Share</a>
+          <a className="button is-warning is-inverted">
             View more from this channel
           </a>
         </div>

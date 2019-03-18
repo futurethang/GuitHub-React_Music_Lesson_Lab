@@ -48,7 +48,7 @@ function VideoListItem(props) {
             style={style.inlineButtons}
             onClick={(e) => {
               e.preventDefault();
-              props.loadVideo(props.video.id.videoId);
+              props.loadFromList(props.video.id.videoId);
             }}
           >
             view now

@@ -11,7 +11,10 @@ class App extends Component {
     user: null
   };
 
-  loadFeaturedVideo = () => {};
+  loadFeaturedVideo = (selection) => {
+    this.setState({ featuredVideo: selection });
+  };
+
   loadUser = () => {};
   signOut = () => {};
 

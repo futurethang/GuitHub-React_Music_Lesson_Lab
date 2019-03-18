@@ -16,7 +16,7 @@ function VideoList(props) {
         {props.videos.map(video => {
           return (<VideoListItem
             video={video}
-            loadVideo={props.loadVideo} 
+            loadFromList={props.loadFromList} 
             queueVideo={props.queueVideo} />) 
         })}
       </div>
