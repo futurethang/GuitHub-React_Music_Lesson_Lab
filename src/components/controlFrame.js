@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import loadVideo from "./videoFunctions";
+import loadVideo from "../videoFunctions";
 import VideoList from "./sidebar_components/videoList";
 import VideoListItem from "./sidebar_components/videoListItem";
 import Controls from "./sidebar_components/controls";
@@ -13,19 +13,18 @@ const style = {
 
 class ControlFrame extends Component {
   constructor(props) {
-    super(props);
+    super(props); // loadFeaturedVideo() login() signOut() user
     this.state = {
-      videos: [],
-      currentNotes: "",
-      currentSearchSettings: [],
-      playlistVideos: [],
-      listView: true,
-      sideBarState: props.controlFrameState,
-      controlFrameState: "INITIAL" // OTHER: LESSONS, SEARCHRESULTS, NOTES,
+      controlFrameState: "INITIAL",
       // "INITIAL" HAS LOGIN AND SEARCH
       // "LESSONS" HAS CONTROLS AND LIST OF LESSONS
       // "SEARCH" RESULTS HAS CONTROLS AND VIDEOS LIST
       // "NOTES" HAS CONTROLS AND NOTES
+      currentSearchSettings: [],
+      videos: [],
+      playlistVideos: [],
+      currentNotes: "",
+      listView: true,
     };
   }
 
@@ -75,6 +74,7 @@ class ControlFrame extends Component {
         return video;
       }
     });
+
     let playlist = this.state.playlistVideos;
     playlist.push(newVideo);
     this.setState({ playlistVideos: playlist });
@@ -94,6 +94,13 @@ class ControlFrame extends Component {
     });
   };
 
+    // REFERENCE TO PASSED PROPS FORMERLY IN THE APP.JS, NEED TO BE DISTRUCUTED AGAIN AMONG CHILD COMPONENTS
+  //           videos={this.state.videos} // LIST OF SEARCH RESUL VIDEOS
+  //           loadVideo={this.loadFromList} // FUNCTION TO LOAD THE CLICKED VIDEO
+  //           queueVideo={this.queueFromList} // FUNCTION TO ADD VIDEO TO SAVED LIST
+  //           togglePlaylist={this.togglePlaylist} // TOGGLE SEARCHED VS SAVED VIDEOS
+  //           controlFrameState={this.state.controlFrameState} // STATE INDICATOR FOR CONTROL FRAM CONTENT - REPLACES this.listView
+
   changeSideContents = sideBarState => {
     return (
       <div>
@@ -102,12 +109,16 @@ class ControlFrame extends Component {
             case "INITIAL":
               return (
                 <LoginControls
-                  loadVideos={this.props.loadVideos}
+                  loadVideos={this.onLoadVideo}
                   setSidebarState={this.setSidebarState}
+                  login={this.props.login}
                 />
               );
             case "SEARCH":
-              return <VideoList />;
+              return <VideoList
+                  videos={this.state.videos}
+                  queuVideo={this.queueFromList}
+              />;
             default:
               return <h1>{this.props.controlFrameState}</h1>;
           }
@@ -117,6 +128,7 @@ class ControlFrame extends Component {
   };
 
   setSidebarState = sidebarState => {
+    console.log("CHANGING SIDEBAR STATE TO:", sidebarState)
     this.setState({
       controlFrameState: sidebarState
     });

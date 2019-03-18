@@ -13,11 +13,11 @@ function LoginControls(props) {
   return (
     <div className="component" style={style.wrapper}>
       <div className="container">
-        <section class="hero">
-          <div class="hero-body">
-            <div class="container is-center">
-              <h1 class="title">Practice Makes Perfect.</h1>
-              <h2 class="subtitle">
+        <section className="hero">
+          <div className="hero-body">
+            <div className="container is-center">
+              <h1 className="title">Practice Makes Perfect.</h1>
+              <h2 className="subtitle">
                 Sign up or Log in to make your own lesson plan!
               </h2>
               <div className="buttons level">

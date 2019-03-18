@@ -16,7 +16,7 @@ class SearchForm extends React.Component {
   };
 
   logInputs = e => {
-    // e.preventDefault();
+    e.preventDefault();
     const inputs = this.state;
     console.log(inputs);
     // convert this function into a call to loadVideo
@@ -83,7 +83,7 @@ class SearchForm extends React.Component {
         </div>
         <button
           className="button is-rounded"
-          onClick={(this.logInputs(), this.props.setSidebarState("SEARCH"))}
+          onClick={this.logInputs}
         >
           <span>Start Practicing</span>
         </button>

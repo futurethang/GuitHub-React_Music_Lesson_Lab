@@ -28,8 +28,8 @@ class Header extends React.Component {
   render() {
     return (
       <nav className="container" role="navigation" aria-label="main navigation" style={{ margin: "0 0 .4rem 0", maxWidth: "100%", width:"100%"}}>
-        <div class="navbar-brand">
-          <a class="navbar-item is-title is-size-3 has-text-white" href="#">
+        <div className="navbar-brand">
+          <a className="navbar-item is-title is-size-3 has-text-white" href="#">
            <h1>GuitHub - a personal music lesson assistant</h1> 
           </a>
 
@@ -46,7 +46,7 @@ class Header extends React.Component {
         </div>
 
         
-        <form
+        {/* <form
           className="level"
           style={{ position: "relative", top: "10px", display:"flex", justifyContent:"center" }}
         >
@@ -91,7 +91,7 @@ class Header extends React.Component {
           <button className="spaced button is-rounded" onClick={this.logInputs}>
             <span>Start Practicing</span>
           </button>
-        </form>
+        </form> */}
       </nav>
     );
   }
