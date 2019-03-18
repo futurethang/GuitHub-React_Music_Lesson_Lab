@@ -6,86 +6,12 @@ import VideoList from "./components/sidebar_components/videoList";
 import VideoDetails from "./components/videoDetails";
 import Notes from "./components/sidebar_components/notes";
 import Tools from "./components/sidebar_components/tools";
-import loadVideo from "./videoFunctions";
+
 
 class App extends Component {
   state = {
     featuredVideo: null,
-    videos: [],
-    currentNotes: "",
-    currentSearchSettings: [],
-    playlistVideos: [],
-    listView: true,
-    user: "",
-    controlFrameState: "INITIAL" // OTHER: LESSONS, SEARCHRESULTS, NOTES,
-    // "INITIAL" HAS LOGIN AND SEARCH
-    // "LESSONS" HAS CONTROLS AND LIST OF LESSONS
-    // "SEARCH" RESULTS HAS CONTROLS AND VIDEOS LIST
-    // "NOTES" HAS CONTROLS AND NOTES
-  };
-
-  onLoadVideo = async inputs => {
-    console.log("inputs in App.js", inputs);
-    let videos = await loadVideo(inputs);
-    console.log("videos", videos);
-    this.setState({
-      videos: videos,
-      currentSearchSettings: inputs
-    });
-    console.log("state videos", this.state.currentSearchSettings);
-    this.loadVideo();
-  };
-
-  randomSelect = length => {
-    return Math.floor(Math.random() * length + 1);
-  };
-
-  loadVideo = () => {
-    const selection = this.state.videos[
-      this.randomSelect(this.state.videos.length)
-    ];
-    this.setState({ featuredVideo: selection });
-    console.log("FEATURED VIDEO", this.state.featuredVideo);
-  };
-
-  loadFromList = receivedVideoID => {
-    const newVideo = this.state.videos.find(video => {
-      if (video.id.videoId === receivedVideoID) {
-        return video;
-      }
-    });
-    this.setState({ featuredVideo: newVideo });
-    console.log(
-      "CLICKED: ",
-      receivedVideoID.toString(),
-      "SAVED: ",
-      this.state.featuredVideo
-    );
-  };
-
-  queueFromList = receivedVideoID => {
-    const newVideo = this.state.videos.find(video => {
-      if (video.id.videoId === receivedVideoID) {
-        return video;
-      }
-    });
-    let playlist = this.state.playlistVideos;
-    playlist.push(newVideo);
-    this.setState({ playlistVideos: playlist });
-    console.log(
-      "CLICKED: ",
-      receivedVideoID.toString(),
-      "SAVED: ",
-      this.state.playlistVideos
-    );
-  };
-
-  togglePlaylist = e => {
-    e.preventDefault();
-    const newState = !this.state.listView;
-    this.setState({
-      listView: newState
-    });
+    user: null,
   };
 
   render() {
@@ -102,6 +28,7 @@ class App extends Component {
 
           <ControlFrame
             listView={this.state.listView} // BOOLEAN TO ONLY SHOW IF A VIDEO IS LOADED -- !SOON OBSOLETE
+            loadVideos={this.onLoadVideo} // FUNTION TO ACTIVATE THE SEARCH FOR NEW VIDEOS
             videos={this.state.videos} // LIST OF SEARCH RESUL VIDEOS
             loadVideo={this.loadFromList} // FUNCTION TO LOAD THE CLICKED VIDEO
             queueVideo={this.queueFromList} // FUNCTION TO ADD VIDEO TO SAVED LIST

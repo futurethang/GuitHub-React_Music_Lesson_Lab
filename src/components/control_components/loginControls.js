@@ -33,7 +33,7 @@ function LoginControls(props) {
           <div className="hero-body" style={{paddingTop:"0px"}}>
             <div className="container is-center">
               <h3>Hang on! Lemme try this out first . . .</h3>
-              <SearchFrom />
+              <SearchFrom loadVideos={props.loadVideos} setSidebarState={props.setSidebarState}/>
             </div>
           </div>
         </section>

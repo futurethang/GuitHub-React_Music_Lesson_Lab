@@ -16,7 +16,7 @@ class SearchForm extends React.Component {
   };
 
   logInputs = e => {
-    e.preventDefault();
+    // e.preventDefault();
     const inputs = this.state;
     console.log(inputs);
     // convert this function into a call to loadVideo
@@ -47,7 +47,7 @@ class SearchForm extends React.Component {
           />
         </div>
         <div className="columns">
-        <input
+          <input
             className="column spaced input is-rounded textInput "
             type="text"
             name="style"
@@ -56,7 +56,6 @@ class SearchForm extends React.Component {
             onChange={this.handleChange}
           />
         </div>
-
 
         <div className="columns is-paddingless">
           <div className="column is-paddingless is-half spaced select is-rounded">
@@ -84,7 +83,7 @@ class SearchForm extends React.Component {
         </div>
         <button
           className="button is-rounded"
-          onClick={this.logInputs}
+          onClick={(this.logInputs(), this.props.setSidebarState("SEARCH"))}
         >
           <span>Start Practicing</span>
         </button>
