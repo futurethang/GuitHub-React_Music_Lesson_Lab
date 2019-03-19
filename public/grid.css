@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-  max-width: 95%; 
+  max-width: 95%;
   width: 95%;
 }
 
@@ -52,7 +52,6 @@ body {
   position: relative;
   /* padding-bottom: 56.25%; 16:9 */
   /* padding-top: 25px; */
-
 }
 
 .VIDEO iframe {
@@ -68,20 +67,27 @@ body {
   width: 33%;
   height: 700px;
   background: #bbb;
-  min-height:4em;
+  min-height: 4em;
   max-height: 20%;
   overflow: hidden;
 }
 
+.CONTROLS {
+  position: absolute;
+  background: aliceblue;
+  z-index: 100;
+  padding: 15px;
+}
+
 .LIST-ITEM:hover {
-  opacity: .85;
+  opacity: 0.85;
 }
 * {
   box-sizing: border-box;
 }
 body {
   line-height: 1.5;
-  font-family: 'Source Sans Pro';
+  font-family: "Source Sans Pro";
   -webkit-font-smoothing: antialiased;
 }
 a {
@@ -113,10 +119,10 @@ h3 {
   font-size: 16px;
   color: #fff;
   background: #fff;
-/* svg icon */
-/* reveal svg icon */
-/* large button */
-/* styles */
+  /* svg icon */
+  /* reveal svg icon */
+  /* large button */
+  /* styles */
 }
 .btn-icon {
   will-change: width, transform;
@@ -125,23 +131,23 @@ h3 {
   padding: 4px;
   border-radius: 50%;
   fill: #fff;
-  background: rgba(0,0,0,0.15);
+  background: rgba(0, 0, 0, 0.15);
   margin-left: 0;
   -webkit-transform: scale(0);
-          transform: scale(0);
+  transform: scale(0);
   transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-/* if you want the icon visible always */
+  /* if you want the icon visible always */
 }
 .btn-icon--vis {
   width: 24px;
   -webkit-transform: scale(1);
-          transform: scale(1);
+  transform: scale(1);
   margin-left: 8.333333333333334px;
 }
 .btn:hover .btn-icon {
   width: 24px;
   -webkit-transform: scale(1);
-          transform: scale(1);
+  transform: scale(1);
   margin-left: 8.333333333333334px;
 }
 .btn--large {
@@ -176,7 +182,7 @@ h3 {
 }
 .btn--style2 .btn-icon {
   -webkit-transform: scale(0) rotate(-360deg);
-          transform: scale(0) rotate(-360deg);
+  transform: scale(0) rotate(-360deg);
 }
 .btn--style3 {
   position: relative;
@@ -194,15 +200,15 @@ h3 {
   border-radius: 2px;
   background: #000;
   -webkit-transform: scaleX(0);
-          transform: scaleX(0);
+  transform: scaleX(0);
   -webkit-transform-origin: left center;
-          transform-origin: left center;
+  transform-origin: left center;
   opacity: 0.2;
   transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
 .btn--style3:hover:before {
   -webkit-transform: scaleX(1);
-          transform: scaleX(1);
+  transform: scaleX(1);
 }
 .btn--style4 {
   position: relative;
@@ -220,15 +226,15 @@ h3 {
   border-radius: 2px;
   background: #000;
   -webkit-transform: scaleY(0);
-          transform: scaleY(0);
+  transform: scaleY(0);
   -webkit-transform-origin: center bottom;
-          transform-origin: center bottom;
+  transform-origin: center bottom;
   opacity: 0.2;
   transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
 .btn--style4:hover:before {
   -webkit-transform: scaleY(1);
-          transform: scaleY(1);
+  transform: scaleY(1);
 }
 /* block buttons */
 .flex {
@@ -275,19 +281,15 @@ h3 {
 .logo img {
   width: 65px;
   -webkit-transform: rotate(0);
-          transform: rotate(0);
+  transform: rotate(0);
   -webkit-filter: invert(100%);
   filter: invert(100%);
   transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
 .logo img:hover {
   -webkit-transform: rotate(180deg) scale(1.1);
-          transform: rotate(180deg) scale(1.1);
+  transform: rotate(180deg) scale(1.1);
 }
-    
-  
-
-	
 
 /* .VIDEO-DETAILS {
   display: grid;

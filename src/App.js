@@ -35,7 +35,6 @@ class App extends Component {
           {this.state.featuredVideo ? (
             <div className="extras">
               <VideoDetails video={this.state.featuredVideo} />
-              <Notes />
             </div>
           ) : null}
         </div>

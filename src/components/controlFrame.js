@@ -60,7 +60,7 @@ class ControlFrame extends Component {
         return video;
       }
     });
-    
+
     this.props.loadFeaturedVideo(selection);
 
     console.log(
@@ -119,11 +119,18 @@ class ControlFrame extends Component {
               );
             case "SEARCH":
               return (
-                <VideoList
-                  videos={this.state.videos}
-                  queueVideo={this.queueFromList}
-                  loadFromList={this.loadFromList}
-                />
+                <div>
+                  <Controls
+                    setSidebarState={this.setSidebarState}
+                    togglePlaylist={this.togglePlaylist}
+                  />
+                  <VideoList
+                    videos={this.state.listView ? this.state.videos : this.state.playlistVideos}
+                    playlistVideos={this.state.playlistVideos}
+                    queueVideo={this.queueFromList}
+                    loadFromList={this.loadFromList}
+                  />
+                </div>
               );
             default:
               return <h1>{this.props.controlFrameState}</h1>;

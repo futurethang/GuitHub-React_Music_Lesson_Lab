@@ -8,7 +8,7 @@ export default class Controls extends Component {
 
   render() {
     return (
-      <div className="CONTROLS component">
+      <div className="CONTROLS">
 
         <div className="buttons are-small level">
           <a
