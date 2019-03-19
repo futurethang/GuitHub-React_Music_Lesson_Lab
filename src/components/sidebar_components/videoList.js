@@ -12,7 +12,7 @@ const style = {
 function VideoList(props) {
   
     return (
-      <div className="component" style={style.wrapper}>
+      <div className="POST-CONTROL component" style={style.wrapper}>
         {props.videos.map(video => {
           return (<VideoListItem
             video={video}

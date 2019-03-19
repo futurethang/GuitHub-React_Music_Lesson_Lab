@@ -3,6 +3,7 @@ import loadVideo from "../videoFunctions";
 import VideoList from "./sidebar_components/videoList";
 import VideoListItem from "./sidebar_components/videoListItem";
 import Controls from "./sidebar_components/controls";
+import Notes from "./sidebar_components/notes";
 import LoginControls from "./control_components/loginControls";
 
 const style = {
@@ -39,6 +40,12 @@ class ControlFrame extends Component {
     });
     console.log("state videos", this.state.currentSearchSettings);
     this.loadVideo();
+  };
+
+  setControlFrameState = newState => {
+    this.setState({
+      controlFrameState: newState
+    });
   };
 
   randomSelect = length => {
@@ -97,13 +104,6 @@ class ControlFrame extends Component {
     });
   };
 
-  // REFERENCE TO PASSED PROPS FORMERLY IN THE APP.JS, NEED TO BE DISTRUCUTED AGAIN AMONG CHILD COMPONENTS
-  //           videos={this.state.videos} // LIST OF SEARCH RESUL VIDEOS
-  //           loadVideo={this.loadFromList} // FUNCTION TO LOAD THE CLICKED VIDEO
-  //           queueVideo={this.queueFromList} // FUNCTION TO ADD VIDEO TO SAVED LIST
-  //           togglePlaylist={this.togglePlaylist} // TOGGLE SEARCHED VS SAVED VIDEOS
-  //           controlFrameState={this.state.controlFrameState} // STATE INDICATOR FOR CONTROL FRAM CONTENT - REPLACES this.listView
-
   changeSideContents = sideBarState => {
     return (
       <div>
@@ -123,13 +123,30 @@ class ControlFrame extends Component {
                   <Controls
                     setSidebarState={this.setSidebarState}
                     togglePlaylist={this.togglePlaylist}
+                    setControlFrameState={this.setControlFrameState}
                   />
                   <VideoList
-                    videos={this.state.listView ? this.state.videos : this.state.playlistVideos}
+                    videos={
+                      this.state.listView
+                        ? this.state.videos
+                        : this.state.playlistVideos
+                    }
                     playlistVideos={this.state.playlistVideos}
                     queueVideo={this.queueFromList}
                     loadFromList={this.loadFromList}
                   />
+                </div>
+              );
+            case "NOTES":
+              return (
+                <div>
+                  <Controls
+                    setSidebarState={this.setSidebarState}
+                    togglePlaylist={this.togglePlaylist}
+                    setControlFrameState={this.setControlFrameState}
+                    controlFrameState={this.state.controlFrameState}
+                  />
+                  <Notes controlFrameState={this.state.controlFrameState}/>
                 </div>
               );
             default:
@@ -151,17 +168,6 @@ class ControlFrame extends Component {
     return (
       <div className="CONTROL-FRAME component" style={style.wrapper}>
         {this.changeSideContents(this.state.controlFrameState)}
-        {/* <Controls togglePlaylist={this.props.togglePlaylist} />
-
-        {this.props.videos.map(video => {
-          return (
-            <VideoListItem
-              video={video}
-              loadVideo={this.props.loadVideo}
-              queueVideo={this.props.queueVideo}
-            />
-          );
-        })} */}
       </div>
     );
   }

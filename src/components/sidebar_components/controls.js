@@ -7,9 +7,10 @@ export default class Controls extends Component {
   }
 
   render() {
+    const controlsProps = this.props;
+
     return (
       <div className="CONTROLS">
-
         <div className="buttons are-small level">
           <a
             class="button is-info is-inverted"
@@ -31,6 +32,28 @@ export default class Controls extends Component {
           >
             Share Lesson Plan
           </a>
+
+          {this.props.controlFrameState !== "NOTES" ? (
+            <a
+              class="button is-primary is-inverted"
+              className="spaced button is-rounded"
+              onClick={e => {
+                controlsProps.setControlFrameState("NOTES");
+              }}
+            >
+              Notes
+            </a>
+          ) : (
+            <a
+              class="button is-primary is-inverted"
+              className="spaced button is-rounded"
+              onClick={e => {
+                controlsProps.setControlFrameState("SEARCH"); // THIS NEEDS TO BE MORE DYNAMIC
+              }}
+            >
+              Close Notes
+            </a>
+          )}
           <a
             class="button is-primary is-inverted"
             className="spaced button is-rounded"

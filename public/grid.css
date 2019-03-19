@@ -75,8 +75,15 @@ body {
 .CONTROLS {
   position: absolute;
   background: aliceblue;
+  height: 170px;
   z-index: 100;
   padding: 15px;
+}
+
+.POST-CONTROL {
+  position: relative;
+  top: 175px;
+  
 }
 
 .LIST-ITEM:hover {

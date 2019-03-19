@@ -16,7 +16,7 @@ export default class Notes extends Component {
 
   render() {
     return (
-      <div className="NOTES component">
+      <div className="NOTES POST-CONTROL component">
         <form action="">
           {/* <textarea value={this.state.value} onChange={this.handleChange} /> */}
           <textarea
