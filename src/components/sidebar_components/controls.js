@@ -1,6 +1,12 @@
 // https://www.codeproject.com/Articles/1202580/Build-a-Metronome-in-React
 import React, { Component } from "react";
 
+const styles = {
+  finishedFeature: {
+    background: "#DCF7DD"
+  }
+};
+
 export default class Controls extends Component {
   constructor(props) {
     super(props);
@@ -34,17 +40,19 @@ export default class Controls extends Component {
           </a>
 
           <a
+            style={styles.finishedFeature}
             class="button is-primary is-inverted"
             className="spaced button is-rounded"
             onClick={e => {
-                controlsProps.setControlFrameState("SEARCH"); // THIS NEEDS TO BE MORE DYNAMIC
-              }}
+              controlsProps.setControlFrameState("SEARCH"); // THIS NEEDS TO BE MORE DYNAMIC
+            }}
           >
             New Search
           </a>
 
           {this.props.controlFrameState !== "NOTES" ? (
             <a
+              style={styles.finishedFeature}
               class="button is-primary is-inverted"
               className="spaced button is-rounded"
               onClick={e => {
@@ -55,6 +63,7 @@ export default class Controls extends Component {
             </a>
           ) : (
             <a
+              style={styles.finishedFeature}
               class="button is-primary is-inverted"
               className="spaced button is-rounded"
               onClick={e => {
@@ -95,6 +104,7 @@ export default class Controls extends Component {
             Metronome
           </a>
           <a
+            style={styles.finishedFeature}
             class="button is-primary is-inverted"
             className="spaced button is-rounded"
             onClick={this.props.togglePlaylist}
