@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import loadVideo from "../videoFunctions";
 import VideoList from "./sidebar_components/videoList";
 import VideoListItem from "./sidebar_components/videoListItem";
-import Controls from "./sidebar_components/controls";
+import Controls from "./control_components/controls";
 import SearchForm from "./control_components/searchForm";
 import Notes from "./sidebar_components/notes";
 import LoginControls from "./control_components/loginControls";
@@ -135,6 +135,10 @@ class ControlFrame extends Component {
     console.log("CURRENT NOTES", this.state.currentNotes);
   };
 
+  saveLesson = e => {
+    alert("YO");
+  }
+
   changeSideContents = sideBarState => {
     return (
       <div>
@@ -163,6 +167,7 @@ class ControlFrame extends Component {
                     setSidebarState={this.setSidebarState}
                     togglePlaylist={this.togglePlaylist}
                     setControlFrameState={this.setControlFrameState}
+                    saveLesson={this.saveLesson}
                   />
                   <VideoList
                     videos={

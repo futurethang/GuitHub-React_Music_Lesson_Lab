@@ -22,8 +22,7 @@ export default class Controls extends Component {
             class="button is-info is-inverted"
             className="spaced button is-rounded"
             onClick={e => {
-              e.preventDefault();
-              alert("feature coming");
+              controlsProps.saveLesson()
             }}
           >
             Save Lesson Plan (video list and notes)

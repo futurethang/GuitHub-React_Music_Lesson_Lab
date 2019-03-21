@@ -3,15 +3,28 @@ import Header from "./components/header";
 import VideoFrame from "./components/videoFrame";
 import ControlFrame from "./components/controlFrame";
 import VideoDetails from "./components/videoDetails";
-import Notes from "./components/sidebar_components/notes";
 
 class App extends Component {
   state = {
     featuredVideo: null,
-    user: null
+    user: {
+      userId: 1,
+      lessonPlans: [
+        {
+          lessonTitle: "Sample Lesson",
+          lessonNotes: "Long string of notes",
+          lessonVideos: []
+        },
+        {
+          lessonTitle: "Sample Lesson2",
+          lessonNotes: "Long string of other notes",
+          lessonVideos: []
+        }
+      ]
+    }
   };
 
-  loadFeaturedVideo = (selection) => {
+  loadFeaturedVideo = selection => {
     this.setState({ featuredVideo: selection });
   };
 
