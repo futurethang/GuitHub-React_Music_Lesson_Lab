@@ -2,12 +2,14 @@ import React, { Component } from "react";
 
 export default class Notes extends Component {
   state = {
-    lessonNotes: ""
+    lessonNotes: "",
+    lessonTitle: ""
   };
 
   componentDidMount = () => {
     this.setState({
-      lessonNotes: this.props.currentNotes
+      lessonNotes: this.props.currentNotes,
+      lessonTitle: this.props.currentTitle
     });
   };
 
@@ -18,12 +20,19 @@ export default class Notes extends Component {
     await this.setState({
       [name]: value
     });
-    this.props.saveNotes(this.state.lessonNotes);
+    this.props.saveNotes(this.state.lessonTitle, this.state.lessonNotes);
   };
 
   render() {
     return (
       <div className="NOTES POST-CONTROL component">
+        <textarea
+          className="lesson-title"
+          name="lessonTitle"
+          value={this.state.lessonTitle}
+          onChange={this.handleInputChange}
+          placeholder="Name this lesson"
+        />
         <textarea
           className="notes-area"
           name="lessonNotes"

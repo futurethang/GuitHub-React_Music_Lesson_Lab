@@ -89,9 +89,19 @@ body {
 .notes-area {
   width: 390px;
   height: 400px;
-  padding: 0 0 0 20px;
-  line-height: 30px;
+  padding: 10px 0 0 14px;
+  line-height: 2em;
   font-size: 1em;
+  font-family: Georgia, 'Times New Roman', Times, serif
+}
+
+.lesson-title {
+  width: 390px;
+  height: 40px;
+  padding: 0 0 0 14px;
+  line-height: 1.5em;
+  font-size: 1.5em;
+  font-weight: bold;
   font-family: Georgia, 'Times New Roman', Times, serif
 }
 

@@ -17,6 +17,7 @@ class ControlFrame extends Component {
   constructor(props) {
     super(props); // loadFeaturedVideo() login() signOut() user
     this.state = {
+      user: this.props.user,
       controlFrameState: "INITIAL",
       // "INITIAL" HAS LOGIN AND SEARCH
       // "LESSONLIST" HAS CONTROLS AND LIST OF LESSONS
@@ -27,8 +28,13 @@ class ControlFrame extends Component {
       videos: [],
       playlistVideos: [],
       currentNotes: "",
-      listView: true
+      currentTitle: "",
+      listView: true,
     };
+  }
+
+  componentDidMount = () => {
+    console.log("USER", this.state.user)
   }
 
   onLoadVideo = async inputs => {
@@ -128,15 +134,28 @@ class ControlFrame extends Component {
     });
   };
 
-  saveNotes = notes => {
+  saveNotes = (title, notes) => {
     this.setState({
-      currentNotes: notes
+      currentNotes: notes,
+      currentTitle: title
     });
-    console.log("CURRENT NOTES", this.state.currentNotes);
+    
   };
 
   saveLesson = e => {
-    alert("YO");
+    console.log(this.state);
+    // Preapare Lesson object
+    const lessonData = {
+      title: this.state.currentTitle,
+      notes: this.state.currentNotes,
+      videos: this.state.playlistVideos,
+    }
+    // Check for existing Lesson Title
+      // if existing then update
+    // Add Lesson Object to Lessons array under User
+
+    // NEEDS VALDATIONS and NON-TITLE ID
+
   }
 
   changeSideContents = sideBarState => {
@@ -195,6 +214,7 @@ class ControlFrame extends Component {
                   <Notes
                     controlFrameState={this.state.controlFrameState}
                     currentNotes={this.state.currentNotes}
+                    currentTitle={this.state.currentTitle}
                     saveNotes={this.saveNotes}
                   />
                 </div>
