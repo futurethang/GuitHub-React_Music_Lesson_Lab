@@ -38,10 +38,7 @@ body {
 }
 
 .NOTES {
-  background: #eee;
-  clear: left;
-  width: 65%;
-  min-height: 100px;
+  
 }
 
 .VIDEO {
@@ -83,12 +80,21 @@ body {
 .POST-CONTROL {
   position: relative;
   top: 175px;
-  
 }
 
 .LIST-ITEM:hover {
   opacity: 0.85;
 }
+
+.notes-area {
+  width: 390px;
+  height: 400px;
+  padding: 0 0 0 20px;
+  line-height: 30px;
+  font-size: 1em;
+  font-family: Georgia, 'Times New Roman', Times, serif
+}
+
 * {
   box-sizing: border-box;
 }

@@ -46,7 +46,7 @@ function VideoListItem(props) {
             href=""
             className="btn green"
             style={style.inlineButtons}
-            onClick={(e) => {
+            onClick={e => {
               e.preventDefault();
               props.loadFromList(props.video.id.videoId);
             }}
@@ -57,21 +57,40 @@ function VideoListItem(props) {
               <path d="M0 0h24v24h-24z" fill="none" />
             </svg>
           </a>
+          {props.listViewState ? (
+            <a
+              href=""
+              className="btn blue"
+              style={style.inlineButtons}
+              onClick={e => {
+                e.preventDefault();
+                props.queueVideo(props.video.id.videoId);
+              }}
+            >
+              + lesson plan
+              <svg className="btn-icon" viewBox="0 0 24 24">
+                <path d="M10 6l-1.41 1.41 4.58 4.59-4.58 4.59 1.41 1.41 6-6z" />
+                <path d="M0 0h24v24h-24z" fill="none" />
+              </svg>
+            </a>
+          ) : 
           <a
             href=""
             className="btn blue"
             style={style.inlineButtons}
             onClick={(e) => {
               e.preventDefault();
-              props.queueVideo(props.video.id.videoId);
+              props.removeVideo(props.video.id.videoId);
             }}
           >
-            + lesson plan
+            remove
             <svg className="btn-icon" viewBox="0 0 24 24">
               <path d="M10 6l-1.41 1.41 4.58 4.59-4.58 4.59 1.41 1.41 6-6z" />
               <path d="M0 0h24v24h-24z" fill="none" />
             </svg>
           </a>
+
+          }
         </div>
       </div>
     </div>

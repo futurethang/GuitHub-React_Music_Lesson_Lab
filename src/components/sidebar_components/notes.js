@@ -1,34 +1,40 @@
 import React, { Component } from "react";
 
 export default class Notes extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   state = {
     lessonNotes: ""
   };
 
-  handleInputChange = event => {
+  componentDidMount = () => {
+    this.setState({
+      lessonNotes: this.props.currentNotes
+    })
+  }
+
+  handleInputChange = async event => {
     // Destructure the name and value properties off of event.target
     // Update the appropriate state
     const { name, value } = event.target;
-    this.setState({
+    await this.setState({
       [name]: value
     });
+    this.props.saveNotes(this.state.lessonNotes)
   };
 
   render() {
     return (
       <div className="NOTES POST-CONTROL component">
-        <form action="">
-          {/* <textarea value={this.state.value} onChange={this.handleChange} /> */}
           <textarea
+            className="notes-area"
             name="lessonNotes"
             value={this.state.lessonNotes}
             onChange={this.handleInputChange}
             placeholder="Take notes for this lesson"
           />
-          <input type="submit">
-            {/* <button className="button">Save Notes</button> */}
-          </input>
-        </form>
       </div>
     );
   }

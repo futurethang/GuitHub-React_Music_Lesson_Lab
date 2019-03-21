@@ -3,6 +3,7 @@ import loadVideo from "../videoFunctions";
 import VideoList from "./sidebar_components/videoList";
 import VideoListItem from "./sidebar_components/videoListItem";
 import Controls from "./sidebar_components/controls";
+import SearchForm from "./control_components/searchForm";
 import Notes from "./sidebar_components/notes";
 import LoginControls from "./control_components/loginControls";
 
@@ -18,7 +19,8 @@ class ControlFrame extends Component {
     this.state = {
       controlFrameState: "INITIAL",
       // "INITIAL" HAS LOGIN AND SEARCH
-      // "LESSONS" HAS CONTROLS AND LIST OF LESSONS
+      // "LESSONLIST" HAS CONTROLS AND LIST OF LESSONS
+      // "LESSONMODE" MAIN VIEW WITH CONTROLS AND PLAYLIST/NOTES TOGGLE
       // "SEARCH" RESULTS HAS CONTROLS AND VIDEOS LIST
       // "NOTES" HAS CONTROLS AND NOTES
       currentSearchSettings: [],
@@ -36,7 +38,8 @@ class ControlFrame extends Component {
     this.setState({
       videos: videos,
       currentSearchSettings: inputs,
-      controlFrameState: "SEARCH"
+      controlFrameState: "LESSONMODE",
+      listView: true,
     });
     console.log("state videos", this.state.currentSearchSettings);
     this.loadVideo();
@@ -96,12 +99,40 @@ class ControlFrame extends Component {
     );
   };
 
+  removeFromList = receivedVideoID => {
+    const updatedArray = this.state.playlistVideos.filter((video) => {
+      return video.id.videoId !== receivedVideoID
+    })
+    
+    
+    // const targetVideo = this.state.playlistVideos.find(video => {
+    //   if (video.id.videoId === receivedVideoID) {
+    //     return video;
+    //   }
+    // });
+
+    this.setState({ playlistVideos: updatedArray });
+    console.log(
+      "CLICKED: ",
+      receivedVideoID.toString(),
+      "SAVED: ",
+      this.state.playlistVideos
+    );
+  };
+
   togglePlaylist = e => {
     e.preventDefault();
     const newState = !this.state.listView;
     this.setState({
       listView: newState
     });
+  };
+
+  saveNotes = notes => {
+    this.setState({
+      currentNotes: notes
+    });
+    console.log("CURRENT NOTES", this.state.currentNotes);
   };
 
   changeSideContents = sideBarState => {
@@ -119,6 +150,14 @@ class ControlFrame extends Component {
               );
             case "SEARCH":
               return (
+                <SearchForm
+                  loadVideos={this.onLoadVideo}
+                  setSidebarState={this.setSidebarState}
+                  login={this.props.login}
+                />
+              );
+            case "LESSONMODE":
+              return (
                 <div>
                   <Controls
                     setSidebarState={this.setSidebarState}
@@ -131,8 +170,10 @@ class ControlFrame extends Component {
                         ? this.state.videos
                         : this.state.playlistVideos
                     }
+                    listViewState={this.state.listView}
                     playlistVideos={this.state.playlistVideos}
                     queueVideo={this.queueFromList}
+                    removeVideo={this.removeFromList}
                     loadFromList={this.loadFromList}
                   />
                 </div>
@@ -146,7 +187,11 @@ class ControlFrame extends Component {
                     setControlFrameState={this.setControlFrameState}
                     controlFrameState={this.state.controlFrameState}
                   />
-                  <Notes controlFrameState={this.state.controlFrameState}/>
+                  <Notes
+                    controlFrameState={this.state.controlFrameState}
+                    currentNotes={this.state.currentNotes}
+                    saveNotes={this.saveNotes}
+                  />
                 </div>
               );
             default:
