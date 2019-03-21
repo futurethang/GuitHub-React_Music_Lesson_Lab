@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import loadVideo from "../videoFunctions";
 import VideoList from "./sidebar_components/videoList";
 import VideoListItem from "./sidebar_components/videoListItem";
+import LessonList from "./sidebar_components/lessonList";
 import Controls from "./control_components/controls";
 import SearchForm from "./control_components/searchForm";
 import Notes from "./sidebar_components/notes";
@@ -29,13 +30,13 @@ class ControlFrame extends Component {
       playlistVideos: [],
       currentNotes: "",
       currentTitle: "",
-      listView: true,
+      listView: true
     };
   }
 
   componentDidMount = () => {
-    console.log("USER", this.state.user)
-  }
+    console.log("USER", this.state.user);
+  };
 
   onLoadVideo = async inputs => {
     console.log("inputs in App.js", inputs);
@@ -45,7 +46,7 @@ class ControlFrame extends Component {
       videos: videos,
       currentSearchSettings: inputs,
       controlFrameState: "LESSONMODE",
-      listView: true,
+      listView: true
     });
     console.log("state videos", this.state.currentSearchSettings);
     this.loadVideo();
@@ -106,11 +107,10 @@ class ControlFrame extends Component {
   };
 
   removeFromList = receivedVideoID => {
-    const updatedArray = this.state.playlistVideos.filter((video) => {
-      return video.id.videoId !== receivedVideoID
-    })
-    
-    
+    const updatedArray = this.state.playlistVideos.filter(video => {
+      return video.id.videoId !== receivedVideoID;
+    });
+
     // const targetVideo = this.state.playlistVideos.find(video => {
     //   if (video.id.videoId === receivedVideoID) {
     //     return video;
@@ -139,7 +139,10 @@ class ControlFrame extends Component {
       currentNotes: notes,
       currentTitle: title
     });
-    
+  };
+
+  loadLesson = async input => {
+    alert(input);
   };
 
   saveLesson = async () => {
@@ -148,25 +151,26 @@ class ControlFrame extends Component {
     const lessonData = await {
       title: this.state.currentTitle,
       notes: this.state.currentNotes,
-      videos: this.state.playlistVideos,
-    }
+      videos: this.state.playlistVideos
+    };
     console.log("2");
     // Check for existing Lesson Title
-      // if existing then update
+    // if existing then update
     // Add Lesson Object to Lessons array under User
-    const lessonStateUpdate = await this.state.user.lessonPlans.concat(lessonData);
+    const lessonStateUpdate = await this.state.user.lessonPlans.concat(
+      lessonData
+    );
     console.log("3");
     this.setState({
       user: {
         lessonPlans: lessonStateUpdate
       }
-    })
+    });
     console.log("4");
-    console.log("AFTER LESSON SAVE",this.state.user)
-    
-    // NEEDS VALDATIONS and NON-TITLE ID
+    console.log("AFTER LESSON SAVE", this.state.user);
 
-  }
+    // NEEDS VALDATIONS and NON-TITLE ID
+  };
 
   changeSideContents = sideBarState => {
     return (
@@ -188,6 +192,21 @@ class ControlFrame extends Component {
                   setSidebarState={this.setSidebarState}
                   login={this.props.login}
                 />
+              );
+            case "LESSONLIST":
+              return (
+                <div>
+                  <Controls
+                    setSidebarState={this.setSidebarState}
+                    togglePlaylist={this.togglePlaylist}
+                    setControlFrameState={this.setControlFrameState}
+                    saveLesson={this.saveLesson}
+                  />
+                  <LessonList
+                    lessons={this.state.user.lessonPlans}
+                    loadLesson={this.loadLesson}
+                  />
+                </div>
               );
             case "LESSONMODE":
               return (
@@ -220,6 +239,7 @@ class ControlFrame extends Component {
                     togglePlaylist={this.togglePlaylist}
                     setControlFrameState={this.setControlFrameState}
                     controlFrameState={this.state.controlFrameState}
+                    saveLesson={this.saveLesson}
                   />
                   <Notes
                     controlFrameState={this.state.controlFrameState}
