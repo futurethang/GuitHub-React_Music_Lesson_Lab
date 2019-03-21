@@ -30,9 +30,15 @@ const youtTubeLink = "https://www.youtube.com/channel/";
 
 function LessonListItem(props) {
   return (
-    <div className="LIST-ITEM component" style={style.videoListItemWrapper}>
+    <div
+      className="LIST-ITEM component"
+      style={style.videoListItemWrapper}
+      onClick={() => {
+        props.loadLesson(props.title);
+      }}
+    >
       <h3>{props.title}</h3>
-      <button onClick={props.loadLesson(props.title)} />
+      {/* <button onClick={props.loadLesson(props.title)} /> */}
     </div>
   );
 }

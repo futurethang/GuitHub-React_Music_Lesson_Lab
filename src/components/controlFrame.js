@@ -142,7 +142,15 @@ class ControlFrame extends Component {
   };
 
   loadLesson = async input => {
-    alert(input);
+    const lessonToLoad = await this.state.user.lessonPlans.find((lesson) => {
+      return lesson.title == input
+    })
+    console.log(lessonToLoad)
+    this.setState({
+      currentNotes: lessonToLoad.notes,
+      currentTitle: lessonToLoad.title,
+      playlistVideos: lessonToLoad.videos,
+    })
   };
 
   saveLesson = async () => {

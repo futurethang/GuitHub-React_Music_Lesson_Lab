@@ -16,8 +16,6 @@ function LessonList(props) {
         return (
           <LessonListItem
             title={lesson.title}
-            
-            
             loadLesson={props.loadLesson}
           />
         );

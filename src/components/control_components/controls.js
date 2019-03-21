@@ -22,7 +22,7 @@ export default class Controls extends Component {
             class="button is-info is-inverted"
             className="spaced button is-rounded"
             onClick={e => {
-              controlsProps.saveLesson()
+              controlsProps.saveLesson();
             }}
           >
             Save Lesson Plan (video list and notes)
@@ -73,10 +73,11 @@ export default class Controls extends Component {
             </a>
           )}
           <a
+            style={styles.finishedFeature}
             class="button is-primary is-inverted"
             className="spaced button is-rounded"
             onClick={e => {
-              controlsProps.setControlFrameState("LESSONLIST")
+              controlsProps.setControlFrameState("LESSONLIST");
             }}
           >
             View all lesson plans
