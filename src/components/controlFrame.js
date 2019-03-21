@@ -142,18 +142,28 @@ class ControlFrame extends Component {
     
   };
 
-  saveLesson = e => {
-    console.log(this.state);
+  saveLesson = async () => {
+    console.log("1");
     // Preapare Lesson object
-    const lessonData = {
+    const lessonData = await {
       title: this.state.currentTitle,
       notes: this.state.currentNotes,
       videos: this.state.playlistVideos,
     }
+    console.log("2");
     // Check for existing Lesson Title
       // if existing then update
     // Add Lesson Object to Lessons array under User
-
+    const lessonStateUpdate = await this.state.user.lessonPlans.concat(lessonData);
+    console.log("3");
+    this.setState({
+      user: {
+        lessonPlans: lessonStateUpdate
+      }
+    })
+    console.log("4");
+    console.log("AFTER LESSON SAVE",this.state.user)
+    
     // NEEDS VALDATIONS and NON-TITLE ID
 
   }
