@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {loadVideo} from "../videoFunctions";
+import { loadVideo } from "../videoFunctions";
 import VideoList from "./sidebar_components/videoList";
 import LessonList from "./sidebar_components/lessonList";
 import Controls from "./control_components/controls";
@@ -35,14 +35,15 @@ class ControlFrame extends Component {
 
   // vv---------------  VIDEO SEARCH AND LOADING FUNCTIONS --------------------vv
 
-  videoSearchAndLoadRandomFeatureVideo = async inputs => { // ACTIVATED BY USER CLICK, GETS NEW LIST FROM SEARCH AND POPULATES RANDOM VIDEO TO AUTOPLAY
+  videoSearchAndLoadRandomFeatureVideo = async inputs => {
+    // ACTIVATED BY USER CLICK, GETS NEW LIST FROM SEARCH AND POPULATES RANDOM VIDEO TO AUTOPLAY
     let videos = await loadVideo(inputs);
     this.setState({
       videos: videos,
       currentSearchSettings: inputs,
       controlFrameState: "LESSONMODE",
       listView: true
-    }); 
+    });
     this.setFeatureVideo();
   };
 
@@ -94,7 +95,7 @@ class ControlFrame extends Component {
     );
   };
 
-// vv---------------  SIDEBAR CONTENT MANAGEMENT --------------------vv
+  // vv---------------  SIDEBAR CONTENT MANAGEMENT --------------------vv
 
   setSidebarState = sidebarState => {
     console.log("CHANGING SIDEBAR STATE TO:", sidebarState);
@@ -109,19 +110,20 @@ class ControlFrame extends Component {
     this.setState({
       listView: newState
     });
-    this.setSidebarState("LESSONMODE")
+    this.setSidebarState("LESSONMODE");
   };
 
   loadLesson = async input => {
-    const lessonToLoad = await this.state.user.lessonPlans.find((lesson) => {
-      return lesson.title == input
-    })
-    console.log(lessonToLoad)
+    const lessonToLoad = await this.state.user.lessonPlans.find(lesson => {
+      return lesson.title == input;
+    });
+    console.log(lessonToLoad);
     this.setState({
       currentNotes: lessonToLoad.notes,
       currentTitle: lessonToLoad.title,
-      playlistVideos: lessonToLoad.videos,
-    })
+      playlistVideos: lessonToLoad.videos
+    });
+    this.setSidebarState("LESSONMODE")
   };
 
   changeSideContents = sideBarState => {
@@ -206,8 +208,7 @@ class ControlFrame extends Component {
     );
   };
 
-// vv---------------  LESSON CONTENT MANAGEMENT --------------------vv
-
+  // vv---------------  LESSON CONTENT MANAGEMENT --------------------vv
 
   saveNotes = (title, notes) => {
     this.setState({
@@ -230,32 +231,39 @@ class ControlFrame extends Component {
   };
 
   saveLesson = async () => {
-    console.log("1");
+    // CURRENTLY UPDATES THIS COMPONENT'S STATE, NOT GLOBAL, OR DB. MAKE POST/PUT ROUTE
     // Preapare Lesson object
     const lessonData = await {
       title: this.state.currentTitle,
       notes: this.state.currentNotes,
       videos: this.state.playlistVideos
     };
-    console.log("2");
-    // Check for existing Lesson Title
+
+    // Check for existing Lesson Title, Return Boolean
+    const existingLesson =
+      (await this.state.user.lessonPlans.filter(
+        lesson => lesson.title == lessonData.title
+      ).length) > 0;
+
     // if existing then update
-    // Add Lesson Object to Lessons array under User
-    const lessonStateUpdate = await this.state.user.lessonPlans.concat(
-      lessonData
-    );
-    console.log("3");
-    this.setState({
-      user: {
-        lessonPlans: lessonStateUpdate
-      }
-    });
-    console.log("4");
+    if (!existingLesson) {
+      // Add Lesson Object to User's Lessons array
+      const lessonStateUpdate = await this.state.user.lessonPlans.concat(
+        lessonData
+      );
+      this.setState({
+        user: {
+          lessonPlans: lessonStateUpdate
+        }
+      });
+    } else {
+      alert("UPDATE EXISTING LESSON?"); // Change to EDIT and PUT route eventually
+    }
+
     console.log("AFTER LESSON SAVE", this.state.user);
 
-    // NEEDS VALDATIONS and NON-TITLE ID
+    // NEEDS NON-TITLE ID
   };
-
 
   render() {
     return (
