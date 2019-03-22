@@ -27,25 +27,30 @@ class Header extends React.Component {
 
   render() {
     return (
-      <nav className="container" role="navigation" aria-label="main navigation" style={{ margin: "0 0 .4rem 0", maxWidth: "100%", width:"100%"}}>
+      <nav
+        className="container"
+        role="navigation"
+        aria-label="main navigation"
+        style={{ margin: "0 0 .4rem 0", maxWidth: "100%", width: "100%" }}
+      >
         <div className="navbar-brand">
           <a className="navbar-item is-title is-size-3 has-text-white" href="#">
-           <h1>GuitHub - a personal music lesson assistant</h1> 
+            <h1 className="page-title">GuitHub</h1>
           </a>
 
-          <div className="navbar-end">
+          <div
+            className="navbar-end"
+            style={{ alignItems: "flex-end", paddingBottom: "17px" }}
+          >
             <div className="navbar-item">
               <div className="buttons">
-                <a className="button is-primary is-small is-rounded">
-                  <strong>Sign up</strong>
-                </a>
-                <a className="button is-light is-small is-rounded">Log in</a>
+                <a className="button is-warning is-small is-rounded">Sign up</a>
+                <a className="button is-info is-small is-rounded">Log in</a>
               </div>
             </div>
           </div>
         </div>
 
-        
         {/* <form
           className="level"
           style={{ position: "relative", top: "10px", display:"flex", justifyContent:"center" }}

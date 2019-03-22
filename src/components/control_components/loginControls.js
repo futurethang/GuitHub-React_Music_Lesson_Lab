@@ -21,8 +21,8 @@ function LoginControls(props) {
                 Sign up or Log in to make your own lesson plan!
               </h2>
               <div className="buttons level">
-                <a className="button is-light is-large is-rounded">Log in</a>
-                <a className="button is-primary is-large is-rounded">
+                <a className="button is-light is-rounded">Log in</a>
+                <a className="button is-primary is-rounded">
                   Sign up
                 </a>
               </div>

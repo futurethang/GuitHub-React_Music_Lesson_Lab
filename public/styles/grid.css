@@ -1,7 +1,44 @@
 /* CSS GRID MARKUP FROM https://grid.layoutit.com/ */
 /* FLEXIBLE VIDEO FRAME WITH HELP FROM: https://css-tricks.com/NetMag/FluidWidthVideo/Article-FluidWidthVideo.php */
+
+font-family: 'Roboto', sans-serif;
+font-family: 'Monoton', cursive;
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: rgb(34, 34, 34);
+}
+
 body {
-  background-color: #222;
+  line-height: 1.5;
+  font-family: "Source Sans Pro";
+  -webkit-font-smoothing: antialiased;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+h1 {
+  line-height: 1.3;
+}
+p,
+h1,
+h3 {
+  margin: 4px 4px 0 4px;
+}
+
+.page-title {
+  font-family: 'Monoton', cursive;
+  color: #ad2300;
+  font-size: 2em;
+}
+
+.wrapper {
+  min-height: 100vh;
+  padding: 10vh 10vw;
+  background: #fffafa;
 }
 
 .textInput {
@@ -38,7 +75,6 @@ body {
 }
 
 .NOTES {
-  
 }
 
 .VIDEO {
@@ -92,7 +128,7 @@ body {
   padding: 10px 0 0 14px;
   line-height: 2em;
   font-size: 1em;
-  font-family: Georgia, 'Times New Roman', Times, serif
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
 
 .lesson-title {
@@ -102,34 +138,10 @@ body {
   line-height: 1.5em;
   font-size: 1.5em;
   font-weight: bold;
-  font-family: Georgia, 'Times New Roman', Times, serif
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
 
-* {
-  box-sizing: border-box;
-}
-body {
-  line-height: 1.5;
-  font-family: "Source Sans Pro";
-  -webkit-font-smoothing: antialiased;
-}
-a {
-  text-decoration: none;
-  color: inherit;
-}
-h1 {
-  line-height: 1.3;
-}
-p,
-h1,
-h3 {
-  margin: 0 0 25px 0;
-}
-.wrapper {
-  min-height: 100vh;
-  padding: 10vh 10vw;
-  background: #fffafa;
-}
+
 /* button base */
 .btn {
   display: inline-flex;
@@ -313,25 +325,3 @@ h3 {
   -webkit-transform: rotate(180deg) scale(1.1);
   transform: rotate(180deg) scale(1.1);
 }
-
-/* .VIDEO-DETAILS {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 0.5fr 1.5fr;
-  grid-template-areas: ". . ." "NOTES NOTES NOTES";
-  grid-area: VIDEO-DETAILS;
-  background: #ccc
-}
-
-.NOTES { grid-area: NOTES; background: #ddd}
-
-.TOOLS {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  grid-template-areas: ". . ." ". . .";
-  grid-area: TOOLS;
-  background: #eee;
-} */
-
-/* ADD MEDIA QUERIES FOR THE RE-SIZING AND REFLOW OF ALL BOXES */

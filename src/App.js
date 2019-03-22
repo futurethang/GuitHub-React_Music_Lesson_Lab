@@ -135,7 +135,7 @@ class App extends Component {
     return (
       <div className="App container">
         <Header loadVideos={this.onLoadVideo} />
-        <div className="grid-container">
+        <div className="">
           <VideoFrame video={this.state.featuredVideo} />
 
           <ControlFrame
