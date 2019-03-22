@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import loadVideo from "../videoFunctions";
+import {loadVideo} from "../videoFunctions";
 import VideoList from "./sidebar_components/videoList";
-import VideoListItem from "./sidebar_components/videoListItem";
 import LessonList from "./sidebar_components/lessonList";
 import Controls from "./control_components/controls";
 import SearchForm from "./control_components/searchForm";
@@ -16,7 +15,7 @@ const style = {
 
 class ControlFrame extends Component {
   constructor(props) {
-    super(props); // loadFeaturedVideo() login() signOut() user
+    super(props); // loadFeaturedVideo(), login(), signOut(), props.user
     this.state = {
       user: this.props.user,
       controlFrameState: "INITIAL",
@@ -34,35 +33,24 @@ class ControlFrame extends Component {
     };
   }
 
-  componentDidMount = () => {
-    console.log("USER", this.state.user);
-  };
+  // vv---------------  VIDEO SEARCH AND LOADING FUNCTIONS --------------------vv
 
-  onLoadVideo = async inputs => {
-    console.log("inputs in App.js", inputs);
+  videoSearchAndLoadRandomFeatureVideo = async inputs => { // ACTIVATED BY USER CLICK, GETS NEW LIST FROM SEARCH AND POPULATES RANDOM VIDEO TO AUTOPLAY
     let videos = await loadVideo(inputs);
-    console.log("videos", videos);
     this.setState({
       videos: videos,
       currentSearchSettings: inputs,
       controlFrameState: "LESSONMODE",
       listView: true
-    });
-    console.log("state videos", this.state.currentSearchSettings);
-    this.loadVideo();
-  };
-
-  setControlFrameState = newState => {
-    this.setState({
-      controlFrameState: newState
-    });
+    }); 
+    this.setFeatureVideo();
   };
 
   randomSelect = length => {
     return Math.floor(Math.random() * length + 1);
   };
 
-  loadVideo = () => {
+  setFeatureVideo = () => {
     // USED TO SET THE FEATURED VIDEO
     const selection = this.state.videos[
       this.randomSelect(this.state.videos.length)
@@ -106,24 +94,13 @@ class ControlFrame extends Component {
     );
   };
 
-  removeFromList = receivedVideoID => {
-    const updatedArray = this.state.playlistVideos.filter(video => {
-      return video.id.videoId !== receivedVideoID;
+// vv---------------  SIDEBAR CONTENT MANAGEMENT --------------------vv
+
+  setSidebarState = sidebarState => {
+    console.log("CHANGING SIDEBAR STATE TO:", sidebarState);
+    this.setState({
+      controlFrameState: sidebarState
     });
-
-    // const targetVideo = this.state.playlistVideos.find(video => {
-    //   if (video.id.videoId === receivedVideoID) {
-    //     return video;
-    //   }
-    // });
-
-    this.setState({ playlistVideos: updatedArray });
-    console.log(
-      "CLICKED: ",
-      receivedVideoID.toString(),
-      "SAVED: ",
-      this.state.playlistVideos
-    );
   };
 
   togglePlaylist = e => {
@@ -132,13 +109,7 @@ class ControlFrame extends Component {
     this.setState({
       listView: newState
     });
-  };
-
-  saveNotes = (title, notes) => {
-    this.setState({
-      currentNotes: notes,
-      currentTitle: title
-    });
+    this.setSidebarState("LESSONMODE")
   };
 
   loadLesson = async input => {
@@ -151,6 +122,111 @@ class ControlFrame extends Component {
       currentTitle: lessonToLoad.title,
       playlistVideos: lessonToLoad.videos,
     })
+  };
+
+  changeSideContents = sideBarState => {
+    return (
+      <div>
+        {(() => {
+          switch (sideBarState) {
+            case "INITIAL":
+              return (
+                <LoginControls
+                  loadVideos={this.videoSearchAndLoadRandomFeatureVideo}
+                  setSidebarState={this.setSidebarState}
+                  login={this.props.login}
+                />
+              );
+            case "SEARCH":
+              return (
+                <SearchForm
+                  loadVideos={this.videoSearchAndLoadRandomFeatureVideo}
+                  setSidebarState={this.setSidebarState}
+                  login={this.props.login}
+                />
+              );
+            case "LESSONLIST":
+              return (
+                <div>
+                  <Controls
+                    setSidebarState={this.setSidebarState}
+                    togglePlaylist={this.togglePlaylist}
+                    saveLesson={this.saveLesson}
+                  />
+                  <LessonList
+                    lessons={this.state.user.lessonPlans}
+                    loadLesson={this.loadLesson}
+                  />
+                </div>
+              );
+            case "LESSONMODE":
+              return (
+                <div>
+                  <Controls
+                    setSidebarState={this.setSidebarState}
+                    togglePlaylist={this.togglePlaylist}
+                    saveLesson={this.saveLesson}
+                  />
+                  <VideoList
+                    videos={
+                      this.state.listView
+                        ? this.state.videos
+                        : this.state.playlistVideos
+                    }
+                    listViewState={this.state.listView}
+                    playlistVideos={this.state.playlistVideos}
+                    queueVideo={this.queueFromList}
+                    removeVideo={this.removeVideoFromPlayListVideos}
+                    loadFromList={this.loadFromList}
+                  />
+                </div>
+              );
+            case "NOTES":
+              return (
+                <div>
+                  <Controls
+                    setSidebarState={this.setSidebarState}
+                    togglePlaylist={this.togglePlaylist}
+                    controlFrameState={this.state.controlFrameState}
+                    saveLesson={this.saveLesson}
+                  />
+                  <Notes
+                    controlFrameState={this.state.controlFrameState}
+                    currentNotes={this.state.currentNotes}
+                    currentTitle={this.state.currentTitle}
+                    saveNotes={this.saveNotes}
+                  />
+                </div>
+              );
+            default:
+              return <h1>{this.props.controlFrameState}</h1>;
+          }
+        })()}
+      </div>
+    );
+  };
+
+// vv---------------  LESSON CONTENT MANAGEMENT --------------------vv
+
+
+  saveNotes = (title, notes) => {
+    this.setState({
+      currentNotes: notes,
+      currentTitle: title
+    });
+  };
+
+  removeVideoFromPlayListVideos = receivedVideoID => {
+    const updatedArray = this.state.playlistVideos.filter(video => {
+      return video.id.videoId !== receivedVideoID;
+    });
+    this.setState({ playlistVideos: updatedArray });
+    console.log(
+      "CLICKED: ",
+      receivedVideoID.toString(),
+      "SAVED: ",
+      this.state.playlistVideos
+    );
   };
 
   saveLesson = async () => {
@@ -180,97 +256,6 @@ class ControlFrame extends Component {
     // NEEDS VALDATIONS and NON-TITLE ID
   };
 
-  changeSideContents = sideBarState => {
-    return (
-      <div>
-        {(() => {
-          switch (sideBarState) {
-            case "INITIAL":
-              return (
-                <LoginControls
-                  loadVideos={this.onLoadVideo}
-                  setSidebarState={this.setSidebarState}
-                  login={this.props.login}
-                />
-              );
-            case "SEARCH":
-              return (
-                <SearchForm
-                  loadVideos={this.onLoadVideo}
-                  setSidebarState={this.setSidebarState}
-                  login={this.props.login}
-                />
-              );
-            case "LESSONLIST":
-              return (
-                <div>
-                  <Controls
-                    setSidebarState={this.setSidebarState}
-                    togglePlaylist={this.togglePlaylist}
-                    setControlFrameState={this.setControlFrameState}
-                    saveLesson={this.saveLesson}
-                  />
-                  <LessonList
-                    lessons={this.state.user.lessonPlans}
-                    loadLesson={this.loadLesson}
-                  />
-                </div>
-              );
-            case "LESSONMODE":
-              return (
-                <div>
-                  <Controls
-                    setSidebarState={this.setSidebarState}
-                    togglePlaylist={this.togglePlaylist}
-                    setControlFrameState={this.setControlFrameState}
-                    saveLesson={this.saveLesson}
-                  />
-                  <VideoList
-                    videos={
-                      this.state.listView
-                        ? this.state.videos
-                        : this.state.playlistVideos
-                    }
-                    listViewState={this.state.listView}
-                    playlistVideos={this.state.playlistVideos}
-                    queueVideo={this.queueFromList}
-                    removeVideo={this.removeFromList}
-                    loadFromList={this.loadFromList}
-                  />
-                </div>
-              );
-            case "NOTES":
-              return (
-                <div>
-                  <Controls
-                    setSidebarState={this.setSidebarState}
-                    togglePlaylist={this.togglePlaylist}
-                    setControlFrameState={this.setControlFrameState}
-                    controlFrameState={this.state.controlFrameState}
-                    saveLesson={this.saveLesson}
-                  />
-                  <Notes
-                    controlFrameState={this.state.controlFrameState}
-                    currentNotes={this.state.currentNotes}
-                    currentTitle={this.state.currentTitle}
-                    saveNotes={this.saveNotes}
-                  />
-                </div>
-              );
-            default:
-              return <h1>{this.props.controlFrameState}</h1>;
-          }
-        })()}
-      </div>
-    );
-  };
-
-  setSidebarState = sidebarState => {
-    console.log("CHANGING SIDEBAR STATE TO:", sidebarState);
-    this.setState({
-      controlFrameState: sidebarState
-    });
-  };
 
   render() {
     return (

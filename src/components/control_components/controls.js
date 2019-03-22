@@ -43,7 +43,7 @@ export default class Controls extends Component {
             class="button is-primary is-inverted"
             className="spaced button is-rounded"
             onClick={e => {
-              controlsProps.setControlFrameState("SEARCH"); // THIS NEEDS TO BE MORE DYNAMIC
+              controlsProps.setSidebarState("SEARCH"); // THIS NEEDS TO BE MORE DYNAMIC
             }}
           >
             New Search
@@ -55,7 +55,7 @@ export default class Controls extends Component {
               class="button is-primary is-inverted"
               className="spaced button is-rounded"
               onClick={e => {
-                controlsProps.setControlFrameState("NOTES");
+                controlsProps.setSidebarState("NOTES");
               }}
             >
               Notes
@@ -66,7 +66,7 @@ export default class Controls extends Component {
               class="button is-primary is-inverted"
               className="spaced button is-rounded"
               onClick={e => {
-                controlsProps.setControlFrameState("LESSONMODE"); // THIS NEEDS TO BE MORE DYNAMIC
+                controlsProps.setSidebarState("LESSONMODE"); // THIS NEEDS TO BE MORE DYNAMIC
               }}
             >
               Close Notes
@@ -77,7 +77,7 @@ export default class Controls extends Component {
             class="button is-primary is-inverted"
             className="spaced button is-rounded"
             onClick={e => {
-              controlsProps.setControlFrameState("LESSONLIST");
+              controlsProps.setSidebarState("LESSONLIST");
             }}
           >
             View all lesson plans
@@ -106,7 +106,7 @@ export default class Controls extends Component {
             style={styles.finishedFeature}
             class="button is-primary is-inverted"
             className="spaced button is-rounded"
-            onClick={this.props.togglePlaylist}
+            onClick={this.props.togglePlaylist} // ADD DEFAUL WHEN CLICKED IT DEACTIVATES NOTES
           >
             Toggle Search/Lesson video list view
           </a>
