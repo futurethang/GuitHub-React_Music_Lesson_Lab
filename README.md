@@ -4,7 +4,8 @@ This app provides a one-page interface that makes it easy to search and save vid
 ### Update As Of 3/23/2019
 * Users are able to browse videos, build a playlist, add notes and save lessons to the current app state.
 * Users are able to retrieve saved lessons from the current state
-__Incomplete__
+
+*__Incomplete__*
 * User log in and long-term save lessons still under developement
 * Site design is basic and awaiting better stylings and UX
 * Edge cases and bugs under review
