@@ -1,28 +1,21 @@
-# React-Music-Lesson-Lab
-A web hub for your favorite music lesson videos. For any playing level and all of your music goals.
-This project will utilize a MERN stack to provide a single page intuitive interface for music students of any sort to search, browse, and save the videos they like best to learn with. 
+# GuitHub - A React Music Lesson Lab
+This app provides a one-page interface that makes it easy to search and save videos for your music practicing goals. The flexible but guided search parameters keep the video results related to learning more about your instrument of choice. Save a custom playlist with notes as a lesson plan to make repeat practice easy to reference without leaving the page. Keep different lesson plans for different goals, for instance your jazz flute practice is separate from your folk guitar goals. Share videos and lesson plans with friends. Rock on!
+
+### Update As Of 3/23/2019
+* Users are able to browse videos, build a playlist, add notes and save lessons to the current app state.
+* Users are able to retrieve saved lessons from the current state
+__Incomplete__
+* User log in and long-term save lessons still under developement
+* Site design is basic and awaiting better stylings and UX
+* Edge cases and bugs under review
+
 ##### Additional features will include:
-* in-built metronome and tuner
-* video controls interface
-* sharing
-* goals folders for different styles or instruments
-* notepad
-* build-your-own lesson plan
+* In-built metronome and tuner
+* Video controls interface
+* Sharing
+* Goals folders for different styles or instruments
 * Publsh a lesson plan
 
-* progress reports, show today's topic searches and have player rate their progress to later show improvement
+##### Stretch Goals
+* Progress reports, show today's topic searches and have player rate their progress to later show improvement
 ** maybe something like, here are all the videos you studied today. Which were too easy? Which were too hard? Mark the proportions and what level they were choosing to search with to get metrics that do not ask a player to rate themself
-
-
-##Front End Tasks##
-* text area to make notes that correlate to the video - load and save once DB is up
-* add videos to playlistqueue state
-* toggle between searchlist and Queue
-* add button lnks to tools
-* save video 
-* create lesson plan
-
-##API tasks:##
-* Authorization
-* save videos to profile with corresponding notes
-* create lesson plan and add videos w/ notes to it
