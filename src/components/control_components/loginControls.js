@@ -22,21 +22,15 @@ function LoginControls(props) {
               </h2>
               <div className="buttons level">
                 <a className="button is-light is-rounded">Log in</a>
-                <a className="button is-primary is-rounded">
-                  Sign up
-                </a>
+                <a className="button is-primary is-rounded">Sign up</a>
               </div>
             </div>
           </div>
         </section>
-        <section className="hero">
-          <div className="hero-body" style={{paddingTop:"0px"}}>
-            <div className="container is-center">
-              <h3>Hang on! Lemme try this out first . . .</h3>
-              <SearchFrom loadVideos={props.loadVideos} setSidebarState={props.setSidebarState}/>
-            </div>
-          </div>
-        </section>
+        <SearchFrom
+          loadVideos={props.loadVideos}
+          setSidebarState={props.setSidebarState}
+        />
       </div>
     </div>
   );

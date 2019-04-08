@@ -1,5 +1,37 @@
 import React, { PureComponent } from "react";
 
+const formStyles = {
+  form: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "center",
+    height: '10em'
+  },
+  textInputsContainer: {
+    display: "flex",
+    flexDirection: "column",
+    width: "100%"
+  },
+  dropDownContainer: {
+    display: "flex",
+    flexDirection: "row",
+    width: "100%",
+    justifyContent: "space-between"
+  },
+  submitButton: {
+    margin: "0 auto"
+  },
+  rounded: {
+    borderRadius: '8px',
+    borderStyle: 'none',
+    height: '2em',
+    fontSize: '1.15em',
+    padding: '0 0 0 .75em',
+    margin: '0 0 1em 0',
+  }
+};
+
 class SearchForm extends React.Component {
   constructor(props) {
     super(props);
@@ -27,67 +59,61 @@ class SearchForm extends React.Component {
 
   render() {
     return (
-      <form
-        className=""
-        style={{
-          position: "relative",
-          top: "10px",
-          display: "flex",
-          justifyContent: "center"
-        }}
-      >
-        <div className="columns">
-          <input
-            className="column spaced input is-rounded textInput "
-            type="text"
-            placeholder="Instrument"
-            name="instrument"
-            value={this.state.instrument}
-            onChange={this.handleChange}
-          />
-        </div>
-        <div className="columns">
-          <input
-            className="column spaced input is-rounded textInput "
-            type="text"
-            name="style"
-            placeholder="Musical Style"
-            value={this.state.style}
-            onChange={this.handleChange}
-          />
-        </div>
+      <section className="hero">
+        <div className="hero-body">
+          <div className="" style={formStyles.form}>
+            <div className="" style={formStyles.textInputsContainer}>
+              <input
+                className=""
+                type="text"
+                placeholder="Instrument"
+                name="instrument"
+                value={this.state.instrument}
+                onChange={this.handleChange}
+                style={formStyles.rounded}
+              />
+              <input
+                className=""
+                type="text"
+                name="style"
+                placeholder="Musical Style"
+                value={this.state.style}
+                onChange={this.handleChange}
+                style={formStyles.rounded}
+              />
+            </div>
 
-        <div className="columns is-paddingless">
-          <div className="column is-paddingless is-half spaced select is-rounded">
-            <select
-              name="experience"
-              value={this.state.experience}
-              onChange={this.handleChange}
+            <div className="" style={formStyles.dropDownContainer}>
+              <select
+                name="experience"
+                value={this.state.experience}
+                onChange={this.handleChange}
+              >
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+              </select>
+              <select
+                name="lessonType"
+                value={this.state.lessonType}
+                onChange={this.handleChange}
+              >
+                <option value="Exercise">Exercise</option>
+                <option value="Technique">Technique</option>
+                <option value="Learn a Song">Learn a Song</option>
+              </select>
+            </div>
+
+            <button
+              className=""
+              stlye={formStyles.submitButton}
+              onClick={this.logInputs}
             >
-              <option value="Beginner">Beginner</option>
-              <option value="Intermediate">Intermediate</option>
-              <option value="Advanced">Advanced</option>
-            </select>
-          </div>
-          <div className="column is-paddingless is-half spaced select is-rounded">
-            <select
-              name="lessonType"
-              value={this.state.lessonType}
-              onChange={this.handleChange}
-            >
-              <option value="Exercise">Exercise</option>
-              <option value="Technique">Technique</option>
-              <option value="Learn a Song">Learn a Song</option>
-            </select>
+              <span>Start Practicing</span>
+            </button>
           </div>
         </div>
-        <button
-          className="button is-rounded"
-          onClick={this.logInputs}
-        >
-          <span>Start Practicing</span>
-        </button>
-      </form>
+      </section>
     );
   }
 }

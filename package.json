@@ -14,7 +14,7 @@
     "react-scripts": "2.1.5"
   },
   "scripts": {
-    "start": "npm run css-watch",
+    "start": "react-scripts start css-watch",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
