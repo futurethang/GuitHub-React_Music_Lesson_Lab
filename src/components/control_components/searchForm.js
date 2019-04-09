@@ -6,7 +6,7 @@ const formStyles = {
     flexDirection: "column",
     justifyContent: "space-between",
     alignItems: "center",
-    height: '10em'
+    height: '13em'
   },
   textInputsContainer: {
     display: "flex",
@@ -20,7 +20,11 @@ const formStyles = {
     justifyContent: "space-between"
   },
   submitButton: {
-    margin: "0 auto"
+    margin: "0 auto",
+    height: '2em',
+    borderRadius: '8px',
+    borderStyle: 'none',
+    fontSize: '1.15em',
   },
   rounded: {
     borderRadius: '8px',
@@ -60,7 +64,7 @@ class SearchForm extends React.Component {
   render() {
     return (
       <section className="hero">
-        <div className="hero-body">
+        <div className="hero-body" style={{paddingTop:'0px'}}>
           <div className="" style={formStyles.form}>
             <div className="" style={formStyles.textInputsContainer}>
               <input
@@ -87,6 +91,7 @@ class SearchForm extends React.Component {
               <select
                 name="experience"
                 value={this.state.experience}
+                style={formStyles.rounded}
                 onChange={this.handleChange}
               >
                 <option value="Beginner">Beginner</option>
@@ -96,6 +101,7 @@ class SearchForm extends React.Component {
               <select
                 name="lessonType"
                 value={this.state.lessonType}
+                style={formStyles.rounded}
                 onChange={this.handleChange}
               >
                 <option value="Exercise">Exercise</option>
@@ -106,7 +112,7 @@ class SearchForm extends React.Component {
 
             <button
               className=""
-              stlye={formStyles.submitButton}
+              style={{...formStyles.submitButton}}
               onClick={this.logInputs}
             >
               <span>Start Practicing</span>
