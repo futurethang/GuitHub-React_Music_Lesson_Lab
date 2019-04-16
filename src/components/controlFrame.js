@@ -117,13 +117,13 @@ class ControlFrame extends Component {
     const lessonToLoad = await this.state.user.lessonPlans.find(lesson => {
       return lesson.title == input;
     });
-    console.log(lessonToLoad);
+    console.log("Lesson To Load", lessonToLoad);
     this.setState({
       currentNotes: lessonToLoad.notes,
       currentTitle: lessonToLoad.title,
       playlistVideos: lessonToLoad.videos
     });
-    this.setSidebarState("LESSONMODE")
+    this.setSidebarState("LESSONMODE");
   };
 
   changeSideContents = sideBarState => {
@@ -141,11 +141,21 @@ class ControlFrame extends Component {
               );
             case "SEARCH":
               return (
-                <SearchForm
-                  loadVideos={this.videoSearchAndLoadRandomFeatureVideo}
-                  setSidebarState={this.setSidebarState}
-                  login={this.props.login}
-                />
+                <div>
+                  <section className="hero">
+                    <div className="hero-body">
+                      <div className="container is-center">
+                        <h1 className="title">Practice Makes Perfect.</h1>
+                        <h2 className="subtitle">Search for more videos!</h2>
+                      </div>
+                    </div>
+                  </section>
+                  <SearchForm
+                    loadVideos={this.videoSearchAndLoadRandomFeatureVideo}
+                    setSidebarState={this.setSidebarState}
+                    login={this.props.login}
+                  />
+                </div>
               );
             case "LESSONLIST":
               return (
@@ -239,6 +249,11 @@ class ControlFrame extends Component {
       videos: this.state.playlistVideos
     };
 
+    const allLessons = this.state.user.lessonPlans;
+
+    console.log("LESSONDATA INBOUND", lessonData)
+    console.log("Existing Lessons", allLessons)
+
     // Check for existing Lesson Title, Return Boolean
     const existingLesson =
       (await this.state.user.lessonPlans.filter(
@@ -258,6 +273,19 @@ class ControlFrame extends Component {
       });
     } else {
       alert("UPDATE EXISTING LESSON?"); // Change to EDIT and PUT route eventually
+      // find the existing lesson
+      var index = allLessons.indexOf(lessonData.title);
+
+      if (index !== -1) {
+        allLessons.index = lessonData;
+        this.setState({
+          user: {
+            lessonPlans: lessonData
+          }
+        });
+      }
+
+      console.log("AFTER UPDATE:", this.state.user.lessonPlans);
     }
 
     console.log("AFTER LESSON SAVE", this.state.user);
