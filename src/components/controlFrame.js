@@ -6,6 +6,7 @@ import Controls from "./control_components/controls";
 import SearchForm from "./control_components/searchForm";
 import Notes from "./sidebar_components/notes";
 import LoginControls from "./control_components/loginControls";
+import API from "../util/api.js";
 
 const style = {
   wrapper: {
@@ -242,6 +243,7 @@ class ControlFrame extends Component {
 
   saveLesson = async () => {
     // CURRENTLY UPDATES THIS COMPONENT'S STATE, NOT GLOBAL, OR DB. MAKE POST/PUT ROUTE
+
     // Preapare Lesson object
     const lessonData = await {
       title: this.state.currentTitle,
@@ -249,47 +251,15 @@ class ControlFrame extends Component {
       videos: this.state.playlistVideos
     };
 
-    const allLessons = this.state.user.lessonPlans;
+    //APPROACH:
+    // 1. Save anything possible, troubleshoot Auth issues
+    // 2. Save a full lesson lessonPlan
+    // 3. Save a lessonPlan to a user's account
+    // 4. Add error check to not over-write existing, and lead to separate function in that case
 
-    console.log("LESSONDATA INBOUND", lessonData)
-    console.log("Existing Lessons", allLessons)
-
-    // Check for existing Lesson Title, Return Boolean
-    const existingLesson =
-      (await this.state.user.lessonPlans.filter(
-        lesson => lesson.title == lessonData.title
-      ).length) > 0;
-
-    // if existing then update
-    if (!existingLesson) {
-      // Add Lesson Object to User's Lessons array
-      const lessonStateUpdate = await this.state.user.lessonPlans.concat(
-        lessonData
-      );
-      this.setState({
-        user: {
-          lessonPlans: lessonStateUpdate
-        }
-      });
-    } else {
-      alert("UPDATE EXISTING LESSON?"); // Change to EDIT and PUT route eventually
-      // find the existing lesson
-      var index = allLessons.indexOf(lessonData.title);
-
-      if (index !== -1) {
-        allLessons.index = lessonData;
-        this.setState({
-          user: {
-            lessonPlans: lessonData
-          }
-        });
-      }
-
-      console.log("AFTER UPDATE:", this.state.user.lessonPlans);
-    }
+    await API.saveNewLesson(lessonData) 
 
     console.log("AFTER LESSON SAVE", this.state.user);
-
     // NEEDS NON-TITLE ID
   };
 
