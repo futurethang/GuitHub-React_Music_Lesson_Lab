@@ -3,26 +3,21 @@ import VideoListItem from "./videoListItem";
 
 const style = {
   wrapper: {
-    overflow: "scroll",
+    overflow: "scroll"
     // maxHeight: "100%",
-    // minHeight: 
+    // minHeight:
   }
-}
+};
 
 function VideoList(props) {
-  
-    return (
-      <div className="POST-CONTROL component" style={style.wrapper}>
-        {props.videos.map(video => {
-          return (<VideoListItem
-            video={video}
-            listViewState={props.listViewState}
-            loadFromList={props.loadFromList} 
-            queueVideo={props.queueVideo}
-            removeVideo={props.removeVideo}/>) 
-        })}
-      </div>
-    );
+  return (
+    <div className="POST-CONTROL component" style={style.wrapper}>
+      {props.videos.map(video => {
+        return <VideoListItem video={video} {...props} />;
+        // passing in loadFromList, listViewState, queueVideo, removeVideo
+      })}
+    </div>
+  );
 }
 
 export default VideoList;
