@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import SearchFrom from "./searchForm";
+import API from "../../util/api";
 
 const style = {
   wrapper: {
@@ -21,7 +22,14 @@ function LoginControls(props) {
                 Sign up or Log in to make your own lesson plan!
               </h2>
               <div className="buttons level">
-                <a className="button is-light is-rounded">Log in</a>
+                <a
+                  className="button is-light is-rounded"
+                  onClick={() => {
+                    API.logIn()
+                  }}
+                >
+                  Log in
+                </a>
                 <a className="button is-primary is-rounded">Sign up</a>
               </div>
             </div>

@@ -251,15 +251,19 @@ class ControlFrame extends Component {
       videos: this.state.playlistVideos
     };
 
+    console.log(lessonData);
+
     //APPROACH:
     // 1. Save anything possible, troubleshoot Auth issues
     // 2. Save a full lesson lessonPlan
     // 3. Save a lessonPlan to a user's account
     // 4. Add error check to not over-write existing, and lead to separate function in that case
 
-    await API.saveNewLesson(lessonData) 
+    API.saveNewLesson(lessonData)
+      .then(result => console.log(result.body))
+      .catch(err => console.log("ERROR: ", err));
 
-    console.log("AFTER LESSON SAVE", this.state.user);
+    // console.log("AFTER LESSON SAVE", this.state.user);
     // NEEDS NON-TITLE ID
   };
 
